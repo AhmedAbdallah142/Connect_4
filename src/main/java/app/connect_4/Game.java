@@ -5,7 +5,7 @@ import javafx.scene.shape.Circle;
 
 public class Game {
     private Color turn;
-    private final boolean wait;
+    private boolean wait;
     private final Circle[] barCircles;
     private final Circle[] boardCircles;
 
@@ -21,13 +21,19 @@ public class Game {
             System.out.println("Can't insert");
             return;
         }
-        Color tempTurn = turn;
-//        wait = true;
+        wait = true;
+        insertBallAction(colIndex,turn);
+        // Call Computer Solver Algorithm here // the algorithm will run beside the ball motion
+        // Call insertBallAction()
+        // this method verify very fast Gui Motion (User Wait Less)
+        wait = false;
+    }
+
+    private void insertBallAction(int colIndex,Color ballColor){
         changeTurn();
         barCircles[colIndex].setFill(turn);
         new Thread(() -> {
             try {
-                // Call Computer Solver Algorithm here
                 for (int i = 5; i >= 0; i--) {
                     Circle c = boardCircles[i * 7 + colIndex];
                     if (haveBall(c)) {
@@ -35,11 +41,9 @@ public class Game {
                     }
                     if (i != 5)
                         boardCircles[(i + 1) * 7 + colIndex].setFill(Color.valueOf("#b8b8b8"));
-                    c.setFill(tempTurn);
+                    c.setFill(ballColor);
                     Thread.sleep(100);
                 }
-                //Check For Completion // Call Algorithm to get Column number insert Computer turn then make
-//                wait = false;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
