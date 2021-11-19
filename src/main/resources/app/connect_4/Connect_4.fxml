@@ -2,10 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
 <HBox alignment="CENTER" prefHeight="940.0" prefWidth="1509.0" spacing="10.0" stylesheets="@Connect4.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.connect_4.AppController">
     <padding>
@@ -16,7 +21,111 @@
     </ScrollPane>
     <VBox prefHeight="900" prefWidth="510.0">
         <Pane minWidth="200" prefHeight="337.0" prefWidth="600.0">
-
+            <Label layoutX="36.0" layoutY="151.0" text="Player 1">
+                <textFill>
+                    <LinearGradient>
+                        <stops>
+                            <Stop>
+                                <color>
+                                    <Color red="0.35379061102867126" green="1.0"/>
+                                </color>
+                            </Stop>
+                            <Stop offset="1.0">
+                                <color>
+                                    <Color red="1.0"/>
+                                </color>
+                            </Stop>
+                        </stops>
+                    </LinearGradient>
+                </textFill>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Label>
+            <Label layoutX="315.0" layoutY="151.0" text="Player 2">
+                <textFill>
+                    <LinearGradient endX="0.5285714285714286" endY="0.7857142857142857">
+                        <stops>
+                            <Stop>
+                                <color>
+                                    <Color red="0.35379061102867126" green="1.0"/>
+                                </color>
+                            </Stop>
+                            <Stop offset="1.0">
+                                <color>
+                                    <Color red="0.9916365742683411" green="1.0"/>
+                                </color>
+                            </Stop>
+                        </stops>
+                    </LinearGradient>
+                </textFill>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Label>
+            <Label layoutX="87.0" layoutY="100.0" text="0">
+                <textFill>
+                    <LinearGradient>
+                        <stops>
+                            <Stop>
+                                <color>
+                                    <Color red="0.35379061102867126" green="1.0"/>
+                                </color>
+                            </Stop>
+                            <Stop offset="1.0">
+                                <color>
+                                    <Color red="1.0"/>
+                                </color>
+                            </Stop>
+                        </stops>
+                    </LinearGradient>
+                </textFill>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Label>
+            <Label layoutX="366.0" layoutY="100.0" text="0">
+                <textFill>
+                    <LinearGradient endX="0.5285714285714286" endY="0.7857142857142857">
+                        <stops>
+                            <Stop>
+                                <color>
+                                    <Color red="0.35379061102867126" green="1.0"/>
+                                </color>
+                            </Stop>
+                            <Stop offset="1.0">
+                                <color>
+                                    <Color red="0.9916365742683411" green="1.0"/>
+                                </color>
+                            </Stop>
+                        </stops>
+                    </LinearGradient>
+                </textFill>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Label>
+            <Label layoutX="158.0" layoutY="34.0" text="Connect 4">
+                <textFill>
+                    <LinearGradient endX="0.561904761904762" endY="0.8">
+                        <stops>
+                            <Stop>
+                                <color>
+                                    <Color red="1.0"/>
+                                </color>
+                            </Stop>
+                            <Stop offset="1.0">
+                                <color>
+                                    <Color red="0.916967511177063" green="1.0"/>
+                                </color>
+                            </Stop>
+                        </stops>
+                    </LinearGradient>
+                </textFill>
+                <font>
+                    <Font size="35.0"/>
+                </font>
+            </Label>
         </Pane>
         <HBox fx:id="Bar_Container" prefHeight="100.0" prefWidth="200.0" styleClass="game-container">
 <!--            <Circle fx:id="C1" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->
