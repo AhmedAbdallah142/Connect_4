@@ -5,7 +5,7 @@ import javafx.scene.shape.Circle;
 
 public class Game {
     private Color turn;
-    private boolean wait;
+    private final boolean wait;
     private final Circle[] barCircles;
     private final Circle[] boardCircles;
 
