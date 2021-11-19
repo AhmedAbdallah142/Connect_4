@@ -6,20 +6,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 
-<?import javafx.scene.control.Button?>
-<HBox alignment="CENTER" prefHeight="940.0" prefWidth="1509.0" spacing="10.0" stylesheets="@Connect4.css"
-      xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="app.connect_4.AppController">
+<HBox alignment="CENTER" prefHeight="940.0" prefWidth="1509.0" spacing="10.0" stylesheets="@Connect4.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.connect_4.AppController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="900" prefViewportWidth="750">
-        <Accordion fx:id="graphLevels" prefHeight="800.0" prefWidth="730.0"/>
+        <Accordion id="graphLevels" prefHeight="800.0" prefWidth="730.0" />
     </ScrollPane>
-    <VBox prefHeight="900" prefWidth="696.0">
-        <Pane minWidth="200" prefHeight="277.0" prefWidth="700.0">
+    <VBox prefHeight="900" prefWidth="510.0">
+        <Pane minWidth="200" prefHeight="337.0" prefWidth="600.0">
 
         </Pane>
         <HBox fx:id="Bar_Container" prefHeight="100.0" prefWidth="200.0" styleClass="game-container">
@@ -31,15 +27,15 @@
 <!--            <Circle fx:id="C6" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->
 <!--            <Circle fx:id="C7" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->
         </HBox>
-        <HBox fx:id="Board_container" prefHeight="525.0" prefWidth="688.0" styleClass="board-container">
-<!--            <VBox id="V1" onMouseEntered="#EnterColumn" onMouseExited="#LeaveColumn" prefHeight="705.0" prefWidth="83.0"-->
+        <HBox fx:id="Board_container" prefHeight="468.0" prefWidth="582.0" styleClass="board-container">
+<!--            <VBox id="V1" prefHeight="705.0" prefWidth="83.0"-->
 <!--                  styleClass="column-container">-->
-<!--                <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-<!--                <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-<!--                <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-<!--                <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-<!--                <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-<!--                <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
+<!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
+<!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
+<!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
+<!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
+<!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
+<!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
 <!--            </VBox>-->
 <!--            <VBox id="V2" onMouseEntered="#EnterColumn" onMouseExited="#LeaveColumn" prefHeight="705.0" prefWidth="83.0" styleClass="column-container">-->
 <!--                <children>-->

@@ -9,17 +9,17 @@
     -fx-fill : LIGHTGRAY;
 }
 .column-container{
-    -fx-padding:10;
+    -fx-padding:5;
     -fx-spacing:5;
 }
 .board-container{
     -fx-background-color : #064d94;
-    -fx-background-radius :20;
+    -fx-background-radius :15;
     /*-fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);*/
 }
 .game-container{
-    -fx-padding :10;
-    -fx-spacing : 20;
+    -fx-padding :5;
+    -fx-spacing : 10;
 }
 /*.graph-container{
     -fx-background-radius :20;

@@ -13,7 +13,7 @@ public class AppLayout extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLayout.class.getResource("Connect_4.fxml"));
-        scene = new Scene(fxmlLoader.load(), 1500, 800);
+        scene = new Scene(fxmlLoader.load(), 1300, 700);
         stage.setTitle("Connect_4");
         stage.setScene(scene);
         stage.show();
