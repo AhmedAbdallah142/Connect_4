@@ -27,6 +27,7 @@ public class Game {
         barCircles[colIndex].setFill(turn);
         new Thread(() -> {
             try {
+                // Call Computer Solver Algorithm here
                 for (int i = 5; i >= 0; i--) {
                     Circle c = boardCircles[i * 7 + colIndex];
                     if (haveBall(c)) {
