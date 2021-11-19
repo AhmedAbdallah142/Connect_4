@@ -5,21 +5,24 @@ import javafx.scene.shape.Circle;
 
 public class Game {
     private Color turn;
+    private boolean wait;
     private final Circle[] barCircles;
     private final Circle[] boardCircles;
 
     public Game(Circle[] barCircles, Circle[] boardCircles) {
+        wait = false;
         turn = Color.RED;
         this.barCircles = barCircles;
         this.boardCircles = boardCircles;
     }
 
     public void insertBall(int colIndex) {
-        Color tempTurn = turn;
-        if (haveBall(boardCircles[5 * 7 + colIndex])) {
+        if ((wait)|(haveBall(boardCircles[5 * 7 + colIndex]))) {
             System.out.println("Can't insert");
             return;
         }
+        Color tempTurn = turn;
+//        wait = true;
         changeTurn();
         barCircles[colIndex].setFill(turn);
         new Thread(() -> {
@@ -34,6 +37,8 @@ public class Game {
                     c.setFill(tempTurn);
                     Thread.sleep(100);
                 }
+                //Check For Completion // Call Algorithm to get Column number insert Computer turn then make
+//                wait = false;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
