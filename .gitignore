@@ -1,6 +1,6 @@
 # Project exclude paths
 /target/
 
-.setting
+.settings
 .classpath
 .project
