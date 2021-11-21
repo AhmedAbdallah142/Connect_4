@@ -5,7 +5,9 @@ import algorithms.MinMax;
 import algorithms.Node;
 import algorithms.Score;
 import javafx.application.Platform;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -19,8 +21,11 @@ public class GUIGameController {
     private final GameState state;
     private final Label P1Score;
     private final Label P2Score;
+    private Accordion graphLayout;
+    private GraphBoard graphBoard;
+    private HelloApplication graphClass = new HelloApplication();
 
-    public GUIGameController(Circle[] barCircles, Circle[] boardCircles, Label P1Score, Label P2Score) {
+    public GUIGameController(Circle[] barCircles, Circle[] boardCircles, Label P1Score, Label P2Score,Accordion graphLayout) {
         userWait = false;
         turn = Color.RED;
         AI = new MinMax();
@@ -30,6 +35,8 @@ public class GUIGameController {
         this.boardCircles = boardCircles;
         this.P1Score = P1Score;
         this.P2Score = P2Score;
+        this.graphLayout = graphLayout;
+        graphBoard = new GraphBoard(graphLayout);
     }
 
     public void insertBall(int colIndex) {
@@ -49,8 +56,12 @@ public class GUIGameController {
     private void ComputerTurn() {
         new Thread(() -> {
             try {
-                int p = AI.minMax(state.getState(), 1, 15, true, new Node(null));
+                Node graph = new Node(null);
+                int p = AI.minMax(state.getState(), 1, 10, true, graph);
                 state.Play(p, 1);
+//                ScrollPane s = graphClass.draw_graph(graph,10);
+                ScrollPane s = new ScrollPane();
+                graphBoard.addGraphLevel(s);
                 Thread.sleep(500);
                 insertBallAction(p, turn);
                 userWait = false;

@@ -1,6 +1,7 @@
 package app.connect_4;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -9,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 
-public class ComponentBuilder {
+public class LayoutController {
     @FXML
     private HBox Bar_Container;
     @FXML
@@ -18,16 +19,21 @@ public class ComponentBuilder {
     private Label P1Score;
     @FXML
     private Label P2Score;
-
-    private GUIGameController game;
+    @FXML
+    private Accordion graphLevels;
     Circle[] barCircles;
     VBox[] boardColumns;
     Circle[] boardCircles;
+    public Accordion getGraphLevels(){
+        return graphLevels;
+    }
+    private GUIGameController game;
+
 
     public void initialize() {
         CreateBarCircle();
         CreateBoardCircle();
-        game = new GUIGameController(barCircles,boardCircles,P1Score,P2Score);
+        game = new GUIGameController(barCircles,boardCircles,P1Score,P2Score,graphLevels);
     }
 
     private void CreateBarCircle() {

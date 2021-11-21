@@ -12,12 +12,12 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" prefHeight="940.0" prefWidth="1509.0" spacing="10.0" stylesheets="@Connect4.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.connect_4.ComponentBuilder">
+<HBox alignment="CENTER" prefHeight="940.0" prefWidth="1509.0" spacing="10.0" stylesheets="@Connect4.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.connect_4.LayoutController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="900" prefViewportWidth="750">
-        <Accordion id="graphLevels" prefHeight="800.0" prefWidth="730.0" />
+        <Accordion fx:id="graphLevels" prefHeight="800.0" prefWidth="730.0" />
     </ScrollPane>
     <VBox prefHeight="900" prefWidth="510.0">
         <Pane minWidth="200" prefHeight="337.0" prefWidth="600.0">
