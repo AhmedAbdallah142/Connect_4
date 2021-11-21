@@ -6,76 +6,90 @@ import java.util.Map;
 public class MinMax {
   public static void main (String[] args) {
     // MinMax m = new MinMax()
-    System.out.println("Hello MinMax");
+    // 0 1 2 3 4 5 6
+    int[] zz = zigzag(5);
+    for (int n : zz)
+      System.out.println(n);
   }
 
-  private int empty = 0, player1 = 1, player2 = 2;
+  private int empty = 0, plySum = 3;
+  private int[] conqureTheMid;
+  private Map<String, Character> visited = new HashMap<>();
+  private Heurestic heurestic = new Heurestic();
+  private Score score = new Score();
 
-  public int minMax(int[][] state, int player, int k) {
+  public int minMax(int[][] state, int player, int k, Node root) {
     int alpha = Integer.MIN_VALUE;
     int beta = Integer.MAX_VALUE;
-    HashMap<String, Character> visited = new HashMap<>();
+    conqureTheMid = zigzag(state.length);
+    visited.clear();
 
-    minMaxRun(state, player, k, alpha, beta, visited);
+    max(state, player, k, alpha, beta, root);
     return -1;
   }
 
-  private int minMaxRun(int[][] state, int player, int k, int alpha, int beta, Map<String, Character> visited) {
+  private int max(int[][] state, int player, int k, int alpha, int beta, Node node) {
     if (k <= 0) // maximum depth reached
-      return 0; // return heuristic
+      return heurestic.heurestic_function(state);
     else if(isTerminalState(state)) // game over (board is full)
-      return 1; //return Score
+      score.calcScore(state);
 
-    if (player == player1) { // max
-      int best = Integer.MIN_VALUE;
+    int best = Integer.MIN_VALUE;
 
-      for (int i = 0; i < state[0].length; i++) {
-        if(state[0][i] == empty) {
-          int[][] newState = state.clone();
-          newState[emptyRow(state, i)][i] = player1; // play in an avaliable place
-          
-          String stateStr = stateToString(newState);
-          if (visited.containsKey(stateStr))
-            continue;
-          else
-            visited.put(stateStr, '0');
-
-          int minMaxVal = minMaxRun(newState, player2, k-1, alpha, beta, visited);
-          
-          best = Math.max(best, minMaxVal);
-          alpha = Math.max(alpha, minMaxVal);
-          
-          if (alpha >= beta) break;
-        }
+    for (int i : conqureTheMid) {
+      if(state[0][i] == empty) {
+        int[][] newState = state.clone();
+        newState[emptyRow(state, i)][i] = player; // play in an avaliable place
+        
+        String stateStr = stateToString(newState);
+        if (visited.containsKey(stateStr))
+          continue;
+        
+        visited.put(stateStr, '0');
+        Node child = new Node(node);
+        node.childs.add(child);
+        int minMaxVal = mini(newState, plySum - player, k-1, alpha, beta, child);
+        
+        best = Math.max(best, minMaxVal);
+        alpha = Math.max(alpha, minMaxVal);
+        
+        if (alpha >= beta) break;
       }
-      return best;
     }
-    else if (player == player2) { //min
-      int best = Integer.MAX_VALUE;
-      
-      for (int i = 0; i < state[0].length; i++) {
-        if(state[0][i] == empty) {
-          int[][] newState = state.clone();
-          newState[emptyRow(state, i)][i] = player2; // play in an avaliable place
-          
-          String stateStr = stateToString(newState);
-          if (visited.containsKey(stateStr))
-            continue;
-          else
-            visited.put(stateStr, '0');
-          
-          int minMaxVal = minMaxRun(newState, player1, k-1, alpha, beta, visited);
-          
-          best = Math.min(best, minMaxVal);
-          beta = Math.min(beta, minMaxVal);
-          
-          if (alpha >= beta) break;
-        }
+    node.setValues(best, alpha, beta);
+    return best;
+  }
+
+  private int mini(int[][] state, int player, int k, int alpha, int beta, Node node) {
+    if (k <= 0) // maximum depth reached
+      return heurestic.heurestic_function(state);
+    else if(isTerminalState(state)) // game over (board is full)
+      score.calcScore(state);
+
+    int best = Integer.MAX_VALUE;
+
+    for (int i : conqureTheMid) {
+      if(state[0][i] == empty) {
+        int[][] newState = state.clone();
+        newState[emptyRow(state, i)][i] = player; // play in an avaliable place
+        
+        String stateStr = stateToString(newState);
+        if (visited.containsKey(stateStr))
+          continue;
+        
+        visited.put(stateStr, '0');
+        Node child = new Node(node);
+        node.childs.add(child);
+        int minMaxVal = mini(newState, plySum - player, k-1, alpha, beta, child);
+        
+        best = Math.min(best, minMaxVal);
+        alpha = Math.min(alpha, minMaxVal);
+        
+        if (alpha >= beta) break;
       }
-      return best;
     }
-    else
-      throw new RuntimeException("Player should have value 1 or 2");
+    node.setValues(best, alpha, beta);
+    return best;
   }
 
   private boolean isTerminalState(int[][] state) {
@@ -101,4 +115,19 @@ public class MinMax {
     return str.toString();
   }
 
+  private static int[] zigzag(int n) {
+    if(n <= 0) return new int[0];
+
+    int[] z = new int[n];
+    z[0] = n/2;
+
+    for (int i = 1; i < n; i++) {
+      if( i % 2 == 0)
+        z[i] = z[i-1] + i;
+      else
+        z[i] = z[i-1] - i;
+    }
+
+    return z;
+  }
 }
