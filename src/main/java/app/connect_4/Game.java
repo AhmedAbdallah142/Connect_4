@@ -1,5 +1,9 @@
 package app.connect_4;
 
+import algorithms.GameState;
+import algorithms.MinMax;
+import algorithms.Node;
+import algorithms.Score;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -8,10 +12,14 @@ public class Game {
     private boolean wait;
     private final Circle[] barCircles;
     private final Circle[] boardCircles;
+    private MinMax AI;
+    private GameState state;
 
     public Game(Circle[] barCircles, Circle[] boardCircles) {
         wait = false;
         turn = Color.RED;
+        AI = new MinMax();
+        state = new GameState();
         this.barCircles = barCircles;
         this.boardCircles = boardCircles;
     }
@@ -23,6 +31,9 @@ public class Game {
         }
         wait = true;
         insertBallAction(colIndex,turn);
+        state.Play(colIndex,2);
+        insertBallAction(AI.minMax(state.GameState(),2,1,new Node(null)),turn);
+        state.Play(colIndex,1);
         // Call Computer Solver Algorithm here // the algorithm will run beside the ball motion
         // Call insertBallAction()
         // this method verify very fast Gui Motion (User Wait Less)

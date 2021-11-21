@@ -18,7 +18,7 @@ public class MinMax {
   private Heurestic heurestic = new Heurestic();
   private Score score = new Score();
 
-  public int minMax(int[][] state, int player, int k, Node root) {
+  public int minMax(int[][] state,int k,int player, Node root) {
     int alpha = Integer.MIN_VALUE;
     int beta = Integer.MAX_VALUE;
     conqureTheMid = zigzag(state.length);

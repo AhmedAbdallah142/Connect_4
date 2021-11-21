@@ -16,6 +16,7 @@ public class AppLayout extends Application {
         scene = new Scene(fxmlLoader.load(), 1300, 700);
         stage.setTitle("Connect_4");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
         new GraphBoard().addGraphLevel();
     }
