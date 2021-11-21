@@ -1,5 +1,7 @@
 package algorithms;
 
+import java.util.Arrays;
+
 public class Score {
 	
 	public int[] calcScore(int[][] state) {
@@ -47,6 +49,34 @@ public class Score {
 		}
 		
 		return score;
+	}
+	
+	public static void main(String[] args) {
+		int[][] state = new int [6][7];
+		/*state[5][0]=1;
+		state[5][1]=1;
+		state[5][2]=2;
+		state[5][3]=2;
+		state[5][4]=1;
+		state[5][5]=2;
+		state[4][0]=1;
+		state[4][1]=1;
+		state[4][3]=2;
+		state[4][4]=1;
+		state[3][1]=1;
+		state[3][3]=2;
+		state[3][4]=2;
+		state[2][1]=2;
+		state[2][3]=1;*/
+		Arrays.fill(state[0], 2);
+		Arrays.fill(state[1], 2);
+		Arrays.fill(state[2], 1);
+		Arrays.fill(state[3], 2);
+		Arrays.fill(state[4], 2);
+		Arrays.fill(state[5], 2);
+		Score s = new Score();
+		int[] a = s.calcScore(state);
+		System.out.println(a[0] +"    "+ a[1]);
 	}
 	
 }
