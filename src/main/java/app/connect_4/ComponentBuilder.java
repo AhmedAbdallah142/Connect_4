@@ -1,6 +1,7 @@
 package app.connect_4;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -13,8 +14,12 @@ public class ComponentBuilder {
     private HBox Bar_Container;
     @FXML
     private HBox Board_container;
+    @FXML
+    private Label P1Score;
+    @FXML
+    private Label P2Score;
 
-    private Game game;
+    private GUIGameController game;
     Circle[] barCircles;
     VBox[] boardColumns;
     Circle[] boardCircles;
@@ -22,7 +27,7 @@ public class ComponentBuilder {
     public void initialize() {
         CreateBarCircle();
         CreateBoardCircle();
-        game = new Game(barCircles,boardCircles);
+        game = new GUIGameController(barCircles,boardCircles,P1Score,P2Score);
     }
 
     private void CreateBarCircle() {

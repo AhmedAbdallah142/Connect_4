@@ -6,8 +6,7 @@ public class Score {
 	
 	public int[] calcScore(int[][] state) {
 		int[] score = new int[2];
-		score[0]=0;	score[1]=0;
-		//score vertical 
+		//score vertical
 		for(int i = 0 ; i < 3 ; i++ ) {
 			for(int j = 0 ; j < 7;j++) {
 				if(state[i][j]==1 && state[i+1][j]==1 && state[i+2][j]==1 && state[i+3][j]==1 ) {

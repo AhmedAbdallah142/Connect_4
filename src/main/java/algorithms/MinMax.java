@@ -16,7 +16,7 @@ public class MinMax {
   private int empty = 0, plySum = 3;
   private int[] conqureTheMid;
   private Map<String, Character> visited = new HashMap<>();
-  private Heurestic heurestic = new Heurestic();
+  private Heuristic heurestic = new Heuristic();
 
   public int minMax(int[][] state, int player, int k, Node root) {
     int alpha = Integer.MIN_VALUE;
@@ -29,7 +29,7 @@ public class MinMax {
 
   private int[] max(int[][] state, int player, int k, int alpha, int beta, Node node) {
     if (k <= 0 || isTerminalState(state)) // maximum depth reached or game over
-      return new int[] {heurestic.heurestic_function(state), -1};
+      return new int[] {heurestic.heuristic_function(state), -1};
 
     int best = Integer.MIN_VALUE;
     int bestCol = 0; 
@@ -63,7 +63,7 @@ public class MinMax {
 
   private int[] mini(int[][] state, int player, int k, int alpha, int beta, Node node) {
     if (k <= 0 || isTerminalState(state)) // maximum depth reached or game over
-      return new int[] {heurestic.heurestic_function(state), -1};
+      return new int[] {heurestic.heuristic_function(state), -1};
 
     int best = Integer.MAX_VALUE;
     int bestCol = 0; 
@@ -111,7 +111,7 @@ public class MinMax {
   }
 
   private String stateToString(int[][] state) {
-    StringBuilder str = new StringBuilder("");
+    StringBuilder str = new StringBuilder();
     for (int[] row : state)
       for (int col : row)
         str.append(col);

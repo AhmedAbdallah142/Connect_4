@@ -4,24 +4,32 @@ import algorithms.GameState;
 import algorithms.MinMax;
 import algorithms.Node;
 import algorithms.Score;
+import javafx.application.Platform;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class Game {
+public class GUIGameController {
     private Color turn;
+    private final Score score;
     private boolean userWait;
     private final Circle[] barCircles;
     private final Circle[] boardCircles;
-    private MinMax AI;
-    private GameState state;
+    private final MinMax AI;
+    private final GameState state;
+    private final Label P1Score;
+    private final Label P2Score;
 
-    public Game(Circle[] barCircles, Circle[] boardCircles) {
+    public GUIGameController(Circle[] barCircles, Circle[] boardCircles, Label P1Score, Label P2Score) {
         userWait = false;
         turn = Color.RED;
         AI = new MinMax();
         state = new GameState();
+        score = new Score();
         this.barCircles = barCircles;
         this.boardCircles = boardCircles;
+        this.P1Score = P1Score;
+        this.P2Score = P2Score;
     }
 
     public void insertBall(int colIndex) {
@@ -41,12 +49,10 @@ public class Game {
     private void ComputerTurn() {
         new Thread(() -> {
             try {
-                int p = AI.minMax(state.getState(), 1, 1, new Node(null));
-                System.out.println(p);
+                int p = AI.minMax(state.getState(), 1, 10, new Node(null));
                 state.Play(p, 1);
                 Thread.sleep(500);
                 insertBallAction(p, turn);
-//                Thread.sleep(100);
                 userWait = false;
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -54,11 +60,19 @@ public class Game {
         }).start();
     }
 
+    private void setScore() {
+        int[] temp = score.calcScore(state.getState());
+        System.out.println(temp[0] + " " + temp[1]);
+        Platform.runLater(() -> {
+            P1Score.setText("" + temp[1]);
+            P2Score.setText("" + temp[0]);
+        });
+
+    }
+
     private void insertBallAction(int colIndex, Color ballColor) {
-//        System.out.println("hello");
         changeTurn();
-//        barCircles[colIndex].setFill(turn);
-//        barCircles[colIndex].setVisible(!userWait);
+        setScore();
         new Thread(() -> {
             try {
                 for (int i = 5; i >= 0; i--) {
@@ -83,9 +97,6 @@ public class Game {
 
     public void EnterColumn(int index) {
         Circle c = barCircles[index];
-//        c.setFill(turn);
-//        c.setFill(Color.RED);
-//        c.setVisible(!userWait);
         c.setVisible(true);
     }
 
