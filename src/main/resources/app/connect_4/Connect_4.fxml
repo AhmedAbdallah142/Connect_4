@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" prefHeight="940.0" prefWidth="1509.0" spacing="10.0" stylesheets="@Connect4.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.connect_4.AppController">
+<HBox alignment="CENTER" prefHeight="940.0" prefWidth="1509.0" spacing="10.0" stylesheets="@Connect4.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.connect_4.ComponentBuilder">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>

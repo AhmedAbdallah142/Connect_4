@@ -9,14 +9,14 @@ import javafx.scene.shape.Circle;
 
 public class Game {
     private Color turn;
-    private boolean wait;
+    private boolean userWait;
     private final Circle[] barCircles;
     private final Circle[] boardCircles;
     private MinMax AI;
     private GameState state;
 
     public Game(Circle[] barCircles, Circle[] boardCircles) {
-        wait = false;
+        userWait = false;
         turn = Color.RED;
         AI = new MinMax();
         state = new GameState();
@@ -25,26 +25,40 @@ public class Game {
     }
 
     public void insertBall(int colIndex) {
-        if ((wait)|(haveBall(boardCircles[5 * 7 + colIndex]))) {
+        if ((userWait) | (haveBall(boardCircles[5 * 7 + colIndex]))) {
             System.out.println("Can't insert");
             return;
         }
-        wait = true;
-        insertBallAction(colIndex,turn);
-        state.Play(colIndex,2);
-        int p = AI.minMax(state.getState(),1,1,new Node(null));
-        System.out.println(p);
-        insertBallAction(p,turn);
-        state.Play(p,1);
+        userWait = true;
+        state.Play(colIndex, 2);
+        insertBallAction(colIndex, turn);
         // Call Computer Solver Algorithm here // the algorithm will run beside the ball motion
         // Call insertBallAction()
         // this method verify very fast Gui Motion (User Wait Less)
-        wait = false;
+        ComputerTurn();
     }
 
-    private void insertBallAction(int colIndex,Color ballColor){
+    private void ComputerTurn() {
+        new Thread(() -> {
+            try {
+                int p = AI.minMax(state.getState(), 1, 1, new Node(null));
+                System.out.println(p);
+                state.Play(p, 1);
+                Thread.sleep(500);
+                insertBallAction(p, turn);
+//                Thread.sleep(100);
+                userWait = false;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void insertBallAction(int colIndex, Color ballColor) {
+//        System.out.println("hello");
         changeTurn();
 //        barCircles[colIndex].setFill(turn);
+//        barCircles[colIndex].setVisible(!userWait);
         new Thread(() -> {
             try {
                 for (int i = 5; i >= 0; i--) {
@@ -69,7 +83,9 @@ public class Game {
 
     public void EnterColumn(int index) {
         Circle c = barCircles[index];
-        c.setFill(turn);
+//        c.setFill(turn);
+//        c.setFill(Color.RED);
+//        c.setVisible(!userWait);
         c.setVisible(true);
     }
 

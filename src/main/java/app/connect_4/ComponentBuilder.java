@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 
-public class AppController {
+public class ComponentBuilder {
     @FXML
     private HBox Bar_Container;
     @FXML
@@ -29,7 +29,7 @@ public class AppController {
         barCircles = new Circle[7];
         for (int i = 0; i < 7; i++) {
             barCircles[i] = new Circle();
-            CreateCircle(barCircles[i]);
+            CreateCircle(barCircles[i],Color.RED);
             barCircles[i].setVisible(false);
         }
         Bar_Container.getChildren().addAll(barCircles);
@@ -49,13 +49,13 @@ public class AppController {
         Board_container.getChildren().addAll(boardColumns);
         for (int i = 0; i < 42; i++) {
             boardCircles[i] = new Circle();
-            CreateCircle(boardCircles[i]);
+            CreateCircle(boardCircles[i],Color.valueOf("#b8b8b8"));
             boardColumns[i%7].getChildren().add(0,boardCircles[i]);
         }
     }
 
-    private  void CreateCircle(Circle c){
-        c.setFill(Color.valueOf("#b8b8b8"));
+    private  void CreateCircle(Circle c,Color color){
+        c.setFill(color);
         c.setRadius(30.0f);
         c.setStroke(Color.BLACK);
         c.setStrokeType(StrokeType.INSIDE);
