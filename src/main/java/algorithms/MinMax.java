@@ -6,10 +6,11 @@ import java.util.Map;
 public class MinMax {
   public static void main (String[] args) {
     // MinMax m = new MinMax()
-    // 0 1 2 3 4 5 6
-    int[] zz = zigzag(5);
-    for (int n : zz)
-      System.out.println(n);
+    int[][] a = {{1, 2}, {3, 4}};
+    int[][] b = clone2D(a);
+
+    b[0][0] = -1;
+    System.out.println(a[0][0]);
   }
 
   private int empty = 0, plySum = 3;
@@ -20,7 +21,7 @@ public class MinMax {
   public int minMax(int[][] state, int player, int k, Node root) {
     int alpha = Integer.MIN_VALUE;
     int beta = Integer.MAX_VALUE;
-    conqureTheMid = zigzag(state.length);
+    conqureTheMid = zigzag(state[0].length);
     visited.clear();
 
     return max(state, player, k, alpha, beta, root)[1];
@@ -35,7 +36,7 @@ public class MinMax {
 
     for (int i : conqureTheMid) {
       if(state[0][i] == empty) {
-        int[][] newState = state.clone();
+        int[][] newState = clone2D(state);
         newState[emptyRow(state, i)][i] = player; // play in an avaliable place
         
         String stateStr = stateToString(newState);
@@ -69,7 +70,7 @@ public class MinMax {
 
     for (int i : conqureTheMid) {
       if(state[0][i] == empty) {
-        int[][] newState = state.clone();
+        int[][] newState = clone2D(state);
         newState[emptyRow(state, i)][i] = player; // play in an avaliable place
         
         String stateStr = stateToString(newState);
@@ -117,7 +118,7 @@ public class MinMax {
     return str.toString();
   }
 
-  private static int[] zigzag(int n) {
+  private int[] zigzag(int n) {
     if(n <= 0) return new int[0];
 
     int[] z = new int[n];
@@ -131,5 +132,12 @@ public class MinMax {
     }
 
     return z;
+  }
+
+  private static int[][] clone2D(int[][] arr) {
+    int[][] copy = new int[arr.length][];
+    for(int i = 0; i < arr.length; i++)
+      copy[i] = arr[i].clone();
+    return copy;
   }
 }
