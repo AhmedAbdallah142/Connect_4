@@ -49,7 +49,7 @@ public class GUIGameController {
     private void ComputerTurn() {
         new Thread(() -> {
             try {
-                int p = AI.minMax(state.getState(), 1, 10, new Node(null));
+                int p = AI.minMax(state.getState(), 1, 15, true, new Node(null));
                 state.Play(p, 1);
                 Thread.sleep(500);
                 insertBallAction(p, turn);

@@ -14,11 +14,13 @@ public class MinMax {
   }
 
   private int empty = 0, plySum = 3;
+  private boolean pruning = true;
   private int[] conqureTheMid;
   private Map<String, Character> visited = new HashMap<>();
   private Heuristic heurestic = new Heuristic();
 
-  public int minMax(int[][] state, int player, int k, Node root) {
+  public int minMax(int[][] state, int player, int k, boolean pruning, Node root) {
+    this.pruning = pruning;
     int alpha = Integer.MIN_VALUE;
     int beta = Integer.MAX_VALUE;
     conqureTheMid = zigzag(state[0].length);
@@ -54,7 +56,7 @@ public class MinMax {
         }
         alpha = Math.max(alpha, minVal);
 
-        if (alpha >= beta) break;
+        if (pruning && alpha >= beta) break;
       }
     }
     node.setValues(best, alpha, beta);
@@ -88,7 +90,7 @@ public class MinMax {
         }
         beta = Math.min(beta, maxVal);
         
-        if (alpha >= beta) break;
+        if (pruning && alpha >= beta) break;
       }
     }
     node.setValues(best, alpha, beta);
