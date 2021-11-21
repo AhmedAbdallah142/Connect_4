@@ -32,8 +32,10 @@ public class Game {
         wait = true;
         insertBallAction(colIndex,turn);
         state.Play(colIndex,2);
-        insertBallAction(AI.minMax(state.GameState(),2,1,new Node(null)),turn);
-        state.Play(colIndex,1);
+        int p = AI.minMax(state.getState(),1,1,new Node(null));
+        System.out.println(p);
+        insertBallAction(p,turn);
+        state.Play(p,1);
         // Call Computer Solver Algorithm here // the algorithm will run beside the ball motion
         // Call insertBallAction()
         // this method verify very fast Gui Motion (User Wait Less)
@@ -42,7 +44,7 @@ public class Game {
 
     private void insertBallAction(int colIndex,Color ballColor){
         changeTurn();
-        barCircles[colIndex].setFill(turn);
+//        barCircles[colIndex].setFill(turn);
         new Thread(() -> {
             try {
                 for (int i = 5; i >= 0; i--) {

@@ -79,7 +79,7 @@ public class MinMax {
         visited.put(stateStr, '0');
         Node child = new Node(node);
         node.childs.add(child);
-        int maxVal = mini(newState, plySum - player, k-1, alpha, beta, child)[0];
+        int maxVal = max(newState, plySum - player, k-1, alpha, beta, child)[0];
         
         if (maxVal < best) {
           best = maxVal;

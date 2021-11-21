@@ -20,7 +20,7 @@ public class GameState {
             }
         }
     }
-    public int[][] GameState(){
+    public int[][] getState(){
         return game;
     }
 
