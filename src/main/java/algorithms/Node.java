@@ -31,6 +31,9 @@ public class Node {
 		this.alpha = alpha;
 		this.beta = beta;
 	}
+    public String getValues () {
+        return "minmax="+minmax+"\nalpha="+alpha+"\nbeta="+beta;
+	}
 
 	public Line add_line(StackPane s){
         if(parent!=null){
@@ -44,7 +47,6 @@ public class Node {
             }
             if(index!=-1){
                 Line line = new Line(parent.value.getTranslateX()+50, parent.value.getTranslateY()+2*50,value.getTranslateX()+50, value.getTranslateY());
-                //lines_of_children.add(line);
                 return line; 
             }
            

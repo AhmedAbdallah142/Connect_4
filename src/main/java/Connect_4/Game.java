@@ -43,7 +43,8 @@ public class Game {
 
     public ScrollPane Graph(){
         //// write your code here yousef
-        return new ScrollPane();
+       
+        return  graphClass.draw_graph(Graph, 10);
     }
 
     public int[] getScore (){

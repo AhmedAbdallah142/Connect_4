@@ -25,35 +25,7 @@ public class HelloApplication {
     private static  int[] width_level;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private static final int R = 50;
-    private static Group group_gl =new Group();
-
-    // public void countNode(tree root){
-    //     if(root==null)
-    //         return ;
-    //     V++;
-    //     for(int i=0 ;i< root.childern.size() ;i++){    
-    //         countNode(root.childern.get(i));
-    //     }
-    // }
-    // public int getLevelUtil(Node node, StackPane data, int level)
-    // {
-    //     if (node == null)
-    //         return 0;
- 
-    //     if (node.value == data)
-    //         return level;
-    //     int downlevel=0;
-    //     for(int i=0 ;i< node.childs.size() ;i++){   
-    //         downlevel +=getLevelUtil(node.childs.get(i), data, level + 1);
-    //     }
-    //     return downlevel;
-    // }
-    // int getLevel(Node node, StackPane value)
-    // {
-    //     return getLevelUtil(node, value, 0);
-    // }
-
-    private void Bfs(Node goal) {
+    private void Bfs(Node goal, Group group_gl) {
 		HashMap<Node, Node> seen = new HashMap<Node, Node>();
 		Queue<Node> frontier = new LinkedList<Node>();
 		
@@ -62,16 +34,20 @@ public class HelloApplication {
 		
 		while (!frontier.isEmpty()) {
 			Node state = frontier.remove();
-            state.value=create_circle_position();
+            if(state.level>k_level){
+                break;
+            }
+            state.value=create_circle_position(state.getValues());
             group_gl.getChildren().add(state.value);
             int level=	state.level;
+            System.out.println(level +">>>>>>>>"+k_level);
             if(levet_visited[level]==0){
                 state.value.setTranslateX(0);
-                height+=200;
+                height+=500;
                 state.value.setTranslateY(height);
             }
             else{
-                state.value.setTranslateX(150*levet_visited[level]);
+                state.value.setTranslateX((150)*((k_level+1)-state.level)*levet_visited[level]);
                 state.value.setTranslateY(height); 
             }	
             levet_visited[level]++;
@@ -89,9 +65,9 @@ public class HelloApplication {
 	}
 
     public ScrollPane draw_graph(Node root, int j){
-        k_level=j;
-        max_width=  (int) Math.pow(7, k_level-1)*70;
-        levet_visited=new int[k_level+1];
+        k_level=3;
+        // max_width=  (int) Math.pow(7, k_level-1)*70;
+        levet_visited=new int[k_level+2];
         width_level=new int[k_level];
         for(int i=0 ; i<k_level;i++){
             levet_visited[i]=0;
@@ -100,10 +76,10 @@ public class HelloApplication {
             width_level[i]=(int) (max_width/(Math.pow(7, i)));
         }
 
-
+        Group group_gl =new Group();
         ScrollPane scroll = new ScrollPane();
         scroll.setPrefSize(700, 700);
-        Bfs(root);
+        Bfs(root,group_gl);
 
         StackPane stack = new StackPane();
         stack.getChildren().addAll(group_gl);
@@ -111,10 +87,10 @@ public class HelloApplication {
         return scroll;
 
     }
-    private static StackPane create_circle_position(){  
+    private static StackPane create_circle_position(String s){  
 
         final Circle circle = createCircle();
-        final Text   text   = createText();
+        final Text   text   = createText(s);
 
         StackPane stack = new StackPane();
         stack.getChildren().addAll(circle,text);
@@ -134,9 +110,9 @@ public class HelloApplication {
         return circle;
     }
 
-    private static Text createText() {
-        final Text text = new Text("A");
-        text.setFont(new Font(30));
+    private static Text createText(String s) {
+        final Text text = new Text(s);
+        text.setFont(new Font(10));
         text.setBoundsType(TextBoundsType.VISUAL);
 
         return text;
