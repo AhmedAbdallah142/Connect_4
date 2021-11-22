@@ -40,7 +40,7 @@ public class HelloApplication {
             state.value=create_circle_position(state.getValues());
             group_gl.getChildren().add(state.value);
             int level=	state.level;
-            System.out.println(level +">>>>>>>>"+k_level);
+            // System.out.println(level +">>>>>>>>"+k_level);
             if(levet_visited[level]==0){
                 state.value.setTranslateX(0);
                 height+=500;
