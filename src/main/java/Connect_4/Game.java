@@ -36,6 +36,7 @@ public class Game {
         changeTurn();
     }
     public int ComputerTurn(int depth){
+        Graph = new Node(null);
         int p = AI.minMax(state.getState(), 1, depth, true, Graph);
         insertBall(p,1);
         return p;
