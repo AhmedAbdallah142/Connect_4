@@ -36,7 +36,6 @@ public class Game {
         changeTurn();
     }
     public int ComputerTurn(int depth){
-        Graph = new Node(null);
         int p = AI.minMax(state.getState(), 1, depth, true, Graph);
         insertBall(p,1);
         return p;
@@ -45,7 +44,7 @@ public class Game {
     public ScrollPane Graph(){
         //// write your code here yousef
        
-        return  graphClass.draw_graph(Graph, 10);
+        return  graphClass.draw_graph(Graph, 15);
     }
 
     public int[] getScore (){
