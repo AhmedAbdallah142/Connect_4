@@ -111,33 +111,6 @@ public class HelloApplication {
         return scroll;
 
     }
-
-    // @Override
-    // public void start(final Stage stage) throws Exception {
-    //     Node root=new Node(null);
-    //     Node n1=new Node(root);
-    //     Node n2=new Node(root);
-    //     Node n3=new Node(n1);
-    //     Node n4=new Node(n2);
-    //     Node n5=new Node(n3);
-    //     Node n6=new Node(n2);
-    //     Node n7=new Node(n1);
-
-    //     root.childs.add(n1);
-    //     root.childs.add(n2);
-    //     n1.childs.add(n3);
-    //     n1.childs.add(n7);
-    //     n2.childs.add(n4);
-    //     n2.childs.add(n6);
-    //     n3.childs.add(n5);
-
-    //     ScrollPane scroll = new ScrollPane();
-    //     scroll=draw_graph(root,10);
-    //     stage.setScene(new Scene(scroll));
-    //     stage.show();
-
-    // }
-
     private static StackPane create_circle_position(){  
 
         final Circle circle = createCircle();
@@ -168,7 +141,4 @@ public class HelloApplication {
 
         return text;
     }
-    // public static void main(String[] args) {
-    //     launch();
-    // }
 }
