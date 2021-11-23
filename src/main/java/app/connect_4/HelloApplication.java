@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import algorithms.Node;
+import Connect_4.Node;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
