@@ -99,7 +99,15 @@ public class GraphBuilder {
 
     }
 
+//    private double tempX = 0;
+//    private double tempY = 0;
+
     private void addZoomingEvents(Pane p) {
+//        p.addEventHandler(MouseEvent.MOUSE_MOVED,mouseEvent -> {
+//            tempX = mouseEvent.getX();
+//            tempY = mouseEvent.getY();
+//        });
+//        System.out.println(p.getContentBias());
         p.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent event) {

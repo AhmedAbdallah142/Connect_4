@@ -60,7 +60,8 @@ public class GUIGameController {
     private void addGraphLevel(ScrollPane panel){
         Platform.runLater(() -> {
             TitledPane pane = new TitledPane("LEVEL " + count++, panel);
-            pane.setMinHeight(500);
+            pane.setMinHeight(300);
+            System.out.println(pane.getWidth());
             graphLayout.getPanes().add(pane);
         });
     }
