@@ -1,4 +1,4 @@
-package algorithms;
+package Connect_4;
 
 import java.util.Arrays;
 

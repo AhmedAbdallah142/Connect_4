@@ -1,8 +1,6 @@
 package Connect_4;
 
 import algorithms.MinMax;
-import algorithms.Node;
-import algorithms.Score;
 import app.connect_4.HelloApplication;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;

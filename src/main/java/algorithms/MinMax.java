@@ -1,5 +1,7 @@
 package algorithms;
 
+import Connect_4.Node;
+
 import java.util.HashMap;
 import java.util.Map;
 

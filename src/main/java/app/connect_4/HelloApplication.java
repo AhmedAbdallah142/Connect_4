@@ -3,12 +3,9 @@ package app.connect_4;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Vector;
 
-import algorithms.Node;
-import javafx.application.Application;
+import Connect_4.Node;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -19,7 +16,6 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
-import javafx.stage.Stage;
 
 public class HelloApplication {
     private static  int k_level;
