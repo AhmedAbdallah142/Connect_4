@@ -20,20 +20,35 @@ public class MinMax {
   private int[] conqureTheMid;
   private Map<String, Character> visited = new HashMap<>();
   private Heuristic heurestic = new Heuristic();
-
+  private long hTime;
+  
   public int minMax(int[][] state, int player, int k, boolean pruning, Node root) {
     this.pruning = pruning;
     int alpha = Integer.MIN_VALUE;
     int beta = Integer.MAX_VALUE;
     conqureTheMid = zigzag(state[0].length);
     visited.clear();
+    hTime = 0l;
 
-    return max(state, player, k, alpha, beta, root)[1];
+    long tik = System.nanoTime();
+    int col = max(state, player, k, alpha, beta, root)[1];
+    long tok = System.nanoTime();
+
+    System.out.println("Total Minimax Time: " + (tok - tik) / 1000000 + " ms");
+    System.out.println("Heuristic Time: " + hTime / 1000000 + " ms");
+    System.out.println("Heuristic Uses: " + (hTime * 100) / (tok - tik) + " %");
+    System.out.println("--------------------------------------");
+    return col;
   }
 
   private int[] max(int[][] state, int player, int k, int alpha, int beta, Node node) {
-    if (k <= 0 || isTerminalState(state)) // maximum depth reached or game over
-      return new int[] {heurestic.heuristic_function(state), -1};
+    if (k <= 0 || isTerminalState(state)){ // maximum depth reached or game over
+      long tik = System.nanoTime();
+      int[] h = new int[] {heurestic.heuristic_function(state), -1};
+      long tok = System.nanoTime();
+      hTime += (tok-tik);
+      return h;
+    }
 
     int best = Integer.MIN_VALUE;
     int bestCol = 0; 
