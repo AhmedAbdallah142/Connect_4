@@ -2,12 +2,15 @@ package app.connect_4;
 
 import Connect_4.Game;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.transform.Scale;
 
 public class GUIGameController {
     private final LayoutBuilder layout;
@@ -60,8 +63,7 @@ public class GUIGameController {
     private void addGraphLevel(ScrollPane panel){
         Platform.runLater(() -> {
             TitledPane pane = new TitledPane("LEVEL " + count++, panel);
-            pane.setMinHeight(300);
-            System.out.println(pane.getWidth());
+            pane.setMinHeight(500);
             graphLayout.getPanes().add(pane);
         });
     }
