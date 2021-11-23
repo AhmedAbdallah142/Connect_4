@@ -33,9 +33,9 @@ public class Game {
         state.Play(colIndex, playerNum);
         changeTurn();
     }
-    public int ComputerTurn(int depth){
+    public int ComputerTurn(int depth,boolean fastMode){
         Graph = new Node(null);
-        int p = AI.minMax(state.getState(), 1, depth, true, Graph);
+        int p = AI.minMax(state.getState(), 1, depth, fastMode, Graph);
         insertBall(p,1);
         return p;
     }

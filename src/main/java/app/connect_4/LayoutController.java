@@ -2,6 +2,7 @@ package app.connect_4;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
@@ -16,6 +17,8 @@ public class LayoutController{
     private Label P2Score;
     @FXML
     private Accordion graphLevels;
+    @FXML
+    private CheckBox fastMode;
 
     public static GUIGameController game;
 
@@ -23,6 +26,6 @@ public class LayoutController{
         LayoutBuilder l = LayoutBuilder.getInstance();
         l.CreateBarCircle(Bar_Container);
         l.CreateBoardCircle(Board_container);
-        game = new GUIGameController(P1Score,P2Score,graphLevels);
+        game = new GUIGameController(P1Score,P2Score,graphLevels,fastMode);
     }
 }

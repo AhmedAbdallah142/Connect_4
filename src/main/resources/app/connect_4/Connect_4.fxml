@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
@@ -126,6 +127,27 @@
                     <Font size="35.0" />
                 </font>
             </Label>
+         <CheckBox fx:id="fastMode" selected="true" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Fast Mode">
+            <textFill>
+               <LinearGradient endX="0.5666666666666667" endY="0.6666666666666667" startX="0.16190476190476188" startY="0.16666666666666666">
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="0.04899999871850014" green="0.9800000190734863" blue="0.6121373772621155" />
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.29629629850387573" green="0.7067901492118835" blue="1.0" />
+                        </color>
+                     </Stop>
+                  </stops>
+               </LinearGradient>
+            </textFill>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </CheckBox>
         </Pane>
         <HBox fx:id="Bar_Container" prefHeight="100.0" prefWidth="200.0" styleClass="game-container">
             <!--            <Circle fx:id="C1" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->

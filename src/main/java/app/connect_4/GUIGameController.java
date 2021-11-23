@@ -2,15 +2,9 @@ package app.connect_4;
 
 import Connect_4.Game;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TitledPane;
-import javafx.scene.input.ScrollEvent;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.transform.Scale;
 
 public class GUIGameController {
     private final LayoutBuilder layout;
@@ -20,13 +14,15 @@ public class GUIGameController {
     private final Accordion graphLayout;
     private final Game game;
     private int count;
+    private CheckBox fastMode;
 
-    public GUIGameController(Label P1Score, Label P2Score,Accordion graphLayout) {
+    public GUIGameController(Label P1Score, Label P2Score,Accordion graphLayout,CheckBox fastMode) {
         userWait = false;
         count = 0;
         this.P1Score = P1Score;
         this.P2Score = P2Score;
         this.graphLayout = graphLayout;
+        this.fastMode = fastMode;
         layout = LayoutBuilder.getInstance();
         game = Game.getInstance();
     }
@@ -49,7 +45,7 @@ public class GUIGameController {
     private void ComputerTurn() {
         new Thread(() -> {
             try {
-                int col = game.ComputerTurn(10);
+                int col = game.ComputerTurn(10,fastMode.isSelected());
                 addGraphLevel(game.Graph());
                 Thread.sleep(500);
                 insertBallAction(col, Color.YELLOW);
