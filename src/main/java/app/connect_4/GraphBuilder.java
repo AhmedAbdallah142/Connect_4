@@ -101,22 +101,35 @@ public class GraphBuilder {
 
 //    private double tempX = 0;
 //    private double tempY = 0;
-
+    private double zoomValue = 1;
+    private boolean zoom = true;
     private void addZoomingEvents(Pane p) {
+        p.addEventHandler(MouseEvent.MOUSE_CLICKED,mouseEvent -> {
+            if (mouseEvent.getClickCount()==2){
+                if (zoom){
+                    Scale scaleTransform = new Scale(4, 4, mouseEvent.getX(), mouseEvent.getY());
+                    p.getTransforms().add(0,scaleTransform);
+                }
+                else
+                    p.getTransforms().removeAll(p.getTransforms());
+                zoom = !zoom;
+            }
+        });
 //        p.addEventHandler(MouseEvent.MOUSE_MOVED,mouseEvent -> {
 //            tempX = mouseEvent.getX();
 //            tempY = mouseEvent.getY();
 //        });
-//        System.out.println(p.getContentBias());
         p.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent event) {
                 double zoomFactor = 1.5;
-                if (event.getDeltaY() <= 0) {
+                if (event.getDeltaY() <= 0)
                     // zoom out
-                    zoomFactor = 1 / zoomFactor;
-                }
-                Scale scaleTransform = new Scale(zoomFactor, zoomFactor, 0, 0);
+                    zoomValue /= zoomFactor;
+                else
+                    zoomValue *= zoomFactor;
+                p.getTransforms().removeAll(p.getTransforms());
+                Scale scaleTransform = new Scale(zoomValue, zoomValue, 0, 0);
                 p.getTransforms().add(scaleTransform);
             }
         });
