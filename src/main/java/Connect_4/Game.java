@@ -1,7 +1,7 @@
 package Connect_4;
 
 import algorithms.MinMax;
-import app.connect_4.HelloApplication;
+import app.connect_4.GraphBuilder;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;
 
@@ -10,7 +10,7 @@ public class Game {
     private final State state;
     private final MinMax AI;
     private final Score score;
-    private final HelloApplication graphClass;
+    private final GraphBuilder graphClass;
     Node Graph;
 
     private static Game instance;
@@ -19,7 +19,7 @@ public class Game {
         AI = new MinMax();
         score = new Score();
         state = State.getInstance();
-        graphClass = new HelloApplication();
+        graphClass = new GraphBuilder();
         Graph = new Node(null);
     }
 

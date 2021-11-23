@@ -16,7 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 
-public class HelloApplication {
+public class GraphBuilder {
     private static  int k_level;
     private static  int max_width;
     private static  int height = 50;
