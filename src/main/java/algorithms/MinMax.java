@@ -8,11 +8,6 @@ import java.util.Map;
 public class MinMax {
   public static void main (String[] args) {
     // MinMax m = new MinMax()
-    int[][] a = {{1, 2}, {3, 4}};
-    int[][] b = clone2D(a);
-
-    b[0][0] = -1;
-    System.out.println(a[0][0]);
   }
 
   private int empty = 0, plySum = 3;
@@ -159,7 +154,7 @@ public class MinMax {
     return z;
   }
 
-  private static int[][] clone2D(int[][] arr) {
+  public int[][] clone2D(int[][] arr) {
     int[][] copy = new int[arr.length][];
     for(int i = 0; i < arr.length; i++)
       copy[i] = arr[i].clone();

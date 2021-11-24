@@ -12,6 +12,10 @@ public class State {
         }
     }
 
+    public State (int[][] initState) {
+        this.game = initState;
+    }
+
     public static State getInstance(){
         if(instance==null)
             instance = new State();
@@ -33,8 +37,13 @@ public class State {
     }
 
     public int[] get1dState(){
-
-        return null;
+        int[] oneDgame = new int[game.length * game[0].length];
+        int c = 0;
+        for (int i = game.length - 1; i >= 0; i--) {
+            for (int j : game[i])
+                oneDgame[c++] = j;
+        }
+        return oneDgame;
     }
 
 }

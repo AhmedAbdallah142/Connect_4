@@ -50,7 +50,7 @@ public class Game {
     public ScrollPane Graph(GUIGameController gameGUI){
         //// write your code here yousef
         GraphBuilder2 gb2 = new GraphBuilder2();
-        return gb2.draw_graph(Graph,gameGUI,lastState);
+        return gb2.draw_graph(Graph,gameGUI,AI.clone2D(lastState));
     }
 
     public int[] getScore (){

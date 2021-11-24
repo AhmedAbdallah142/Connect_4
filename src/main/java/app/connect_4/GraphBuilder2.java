@@ -22,8 +22,12 @@ public class GraphBuilder2 {
 	private ScrollPane sp;
 	private GUIGameController gameGUI;
 	private int[][] state;
+
   public ScrollPane draw_graph(Node root , GUIGameController gameGUI , int[][] state) {
-    Group group = new Group();
+    this.gameGUI = gameGUI;
+		this.state = state;
+
+		Group group = new Group();
 
 		sp = new ScrollPane();
 		sp.setContent(group);
@@ -90,13 +94,11 @@ public class GraphBuilder2 {
 				gnode.setOnMouseClicked(event -> fillTree(g, chTreeNode, width, height, b, d));
 				
 				gnode.setOnMouseEntered(mouseEvent -> {
-					System.out.println("entered");
-					int[] state = null;
-//					gameGUI.DrawState(state);
+					int[] oneD = gameAtNode(child, clone2D(state)).get1dState();
+					gameGUI.DrawState(oneD);
 				});
 				gnode.setOnMouseExited(event -> {
-					System.out.println("leaved");
-//					gameGUI.DrawState();
+					gameGUI.DrawState();
 				});
 
 				g.getChildren().addAll(l, gnode);
@@ -137,4 +139,29 @@ public class GraphBuilder2 {
 			return String.valueOf(num);
 	}
 
+	private State gameAtNode(Node node, int[][] gameStart) {
+		int player = 2;
+		LinkedList<Node> nodeList = new LinkedList<>();
+		
+		Node curr = node;
+    while(curr.parent != null) {
+      nodeList.addLast(curr);
+      curr = curr.parent;
+    }
+
+		State game = new State(gameStart);
+    for (Node n: nodeList) {
+      game.Play(n.col - 1, 3 - player);
+      player = 3 - player;
+    }
+
+		return game;
+	}
+
+	private int[][] clone2D(int[][] arr) {
+    int[][] copy = new int[arr.length][];
+    for(int i = 0; i < arr.length; i++)
+      copy[i] = arr[i].clone();
+    return copy;
+  }
 }
