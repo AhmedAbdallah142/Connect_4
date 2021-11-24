@@ -40,7 +40,7 @@ public class Game {
     }
     int lastState[][];
     public int ComputerTurn(int depth,boolean fastMode){
-        lastState = state.getState();
+        lastState = AI.clone2D(state.getState());
         Graph = new Node(null);
         int p = AI.minMax(state.getState(), 1, depth, fastMode, Graph);
         insertBall(p,1);
@@ -50,7 +50,7 @@ public class Game {
     public ScrollPane Graph(GUIGameController gameGUI){
         //// write your code here yousef
         GraphBuilder2 gb2 = new GraphBuilder2();
-        return gb2.draw_graph(Graph,gameGUI,AI.clone2D(lastState));
+        return gb2.draw_graph(Graph,gameGUI,lastState);
     }
 
     public int[] getScore (){
