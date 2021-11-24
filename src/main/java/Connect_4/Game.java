@@ -2,6 +2,7 @@ package Connect_4;
 
 import algorithms.MinMax;
 import app.connect_4.GraphBuilder;
+import app.connect_4.GraphBuilder2;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;
 
@@ -42,8 +43,8 @@ public class Game {
 
     public ScrollPane Graph(){
         //// write your code here yousef
-       
-        return  graphClass.draw_graph(Graph, 15);
+        GraphBuilder2 gb2 = new GraphBuilder2();
+        return gb2.draw_graph(Graph);
     }
 
     public int[] getScore (){

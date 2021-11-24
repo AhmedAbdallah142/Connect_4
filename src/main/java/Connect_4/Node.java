@@ -11,6 +11,7 @@ public class Node {
 	public int alpha;
 	public int beta;
     public int level=0;
+    public int col;
 	public Node parent;
 	public List <Node> childs = new LinkedList<>();
 	public StackPane value ;
@@ -24,6 +25,11 @@ public class Node {
         else{
           level=parent.level+1;  
         } 
+	}
+
+    public Node (Node parent, int col) {
+		this.parent = parent;
+        this.col = col;
 	}
 
 	public void setValues (int minmax, int alpha, int beta) {

@@ -38,17 +38,14 @@ public class MinMax {
     System.out.println("Heuristic Time: " + hTime / 1000000 + " ms");
     System.out.println("Heuristic Uses: " + (hTime * 100) / (tok - tik) + " %");
     System.out.println("--------------------------------------");
+
+    root.col = col + 1;
     return col;
   }
 
   private int[] max(int[][] state, int player, int k, int alpha, int beta, Node node) {
-    if (k <= 0 || isTerminalState(state)){ // maximum depth reached or game over
-      long tik = System.nanoTime();
-      int[] h = new int[] {heurestic.heuristic_function(state), -1};
-      long tok = System.nanoTime();
-      hTime += (tok-tik);
-      return h;
-    }
+    if (k <= 0 || isTerminalState(state)) // maximum depth reached or game over
+      return terminalCase(state, alpha, beta, node);
 
     int best = Integer.MIN_VALUE;
     int bestCol = 0; 
@@ -63,7 +60,7 @@ public class MinMax {
           continue;
         
         visited.put(stateStr, '0');
-        Node child = new Node(node);
+        Node child = new Node(node, i + 1);
         node.childs.add(child);
         int minVal = mini(newState, plySum - player, k-1, alpha, beta, child)[0];
         
@@ -82,7 +79,7 @@ public class MinMax {
 
   private int[] mini(int[][] state, int player, int k, int alpha, int beta, Node node) {
     if (k <= 0 || isTerminalState(state)) // maximum depth reached or game over
-      return new int[] {heurestic.heuristic_function(state), -1};
+      return terminalCase(state, alpha, beta, node);
 
     int best = Integer.MAX_VALUE;
     int bestCol = 0; 
@@ -97,7 +94,7 @@ public class MinMax {
           continue;
         
         visited.put(stateStr, '0');
-        Node child = new Node(node);
+        Node child = new Node(node, i + 1);
         node.childs.add(child);
         int maxVal = max(newState, plySum - player, k-1, alpha, beta, child)[0];
         
@@ -119,6 +116,15 @@ public class MinMax {
     for (int i = 0; terminal && i < state[0].length; i++)
       terminal = state[0][i] != empty;
     return terminal;
+  }
+
+  private int[] terminalCase(int[][] state, int alpha, int beta, Node node) {
+    long tik = System.nanoTime();
+    int[] h = new int[] {heurestic.heuristic_function(state), -1};
+    long tok = System.nanoTime();
+    hTime += (tok-tik);
+    node.setValues(h[0], alpha, beta);
+    return h;
   }
 
   private int emptyRow(int[][] state, int column) {
