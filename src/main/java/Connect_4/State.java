@@ -32,4 +32,9 @@ public class State {
         return game;
     }
 
+    public int[] get1dState(){
+
+        return null;
+    }
+
 }

@@ -150,86 +150,8 @@
          </CheckBox>
         </Pane>
         <HBox fx:id="Bar_Container" prefHeight="100.0" prefWidth="200.0" styleClass="game-container">
-            <!--            <Circle fx:id="C1" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->
-            <!--            <Circle fx:id="C2" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->
-            <!--            <Circle fx:id="C3" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->
-            <!--            <Circle fx:id="C4" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->
-            <!--            <Circle fx:id="C5" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->
-            <!--            <Circle fx:id="C6" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->
-            <!--            <Circle fx:id="C7" fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" visible="false"/>-->
         </HBox>
         <HBox fx:id="Board_container" prefHeight="468.0" prefWidth="582.0" styleClass="board-container">
-            <!--            <VBox id="V1" prefHeight="705.0" prefWidth="83.0"-->
-            <!--                  styleClass="column-container">-->
-            <!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                <Circle fill="#d3d3d3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--            </VBox>-->
-            <!--            <VBox id="V2" onMouseEntered="#EnterColumn" onMouseExited="#LeaveColumn" prefHeight="705.0" prefWidth="83.0" styleClass="column-container">-->
-            <!--                <children>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                </children>-->
-            <!--            </VBox>-->
-            <!--            <VBox id="V3" onMouseEntered="#EnterColumn" onMouseExited="#LeaveColumn" prefHeight="705.0" prefWidth="83.0" styleClass="column-container">-->
-            <!--                <children>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                </children>-->
-            <!--            </VBox>-->
-            <!--            <VBox id="V4" onMouseEntered="#EnterColumn" onMouseExited="#LeaveColumn" prefHeight="705.0" prefWidth="83.0" styleClass="column-container">-->
-            <!--                <children>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                </children>-->
-            <!--            </VBox>-->
-            <!--            <VBox id="V5" onMouseEntered="#EnterColumn" onMouseExited="#LeaveColumn" prefHeight="705.0" prefWidth="83.0" styleClass="column-container">-->
-            <!--                <children>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                </children>-->
-            <!--            </VBox>-->
-            <!--            <VBox id="V6" onMouseEntered="#EnterColumn" onMouseExited="#LeaveColumn" prefHeight="705.0" prefWidth="83.0" styleClass="column-container">-->
-            <!--                <children>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                </children>-->
-            <!--            </VBox>-->
-            <!--            <VBox id="V7" onMouseEntered="#EnterColumn" onMouseExited="#LeaveColumn" prefHeight="705.0" prefWidth="83.0" styleClass="column-container">-->
-            <!--                <children>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                    <Circle fill="#d3d3d3" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board-circle"/>-->
-            <!--                </children>-->
-            <!--            </VBox>-->
         </HBox>
     </VBox>
-    <!--    <Label fx:id="welcomeText" />-->
-    <!--    <Button onAction="#onHelloButtonClick" text="Hello!" />-->
 </HBox>

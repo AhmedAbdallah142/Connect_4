@@ -3,6 +3,7 @@ package app.connect_4;
 import java.util.LinkedList;
 
 import Connect_4.Node;
+import Connect_4.State;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -19,8 +20,9 @@ public class GraphBuilder2 {
   private int treeWidth = 3500, treeHeight = 600;
 	private int nodeW = 60, nodeH = 80;
 	private ScrollPane sp;
-
-  public ScrollPane draw_graph(Node root) {
+	private GUIGameController gameGUI;
+	private int[][] state;
+  public ScrollPane draw_graph(Node root , GUIGameController gameGUI , int[][] state) {
     Group group = new Group();
 
 		sp = new ScrollPane();
@@ -87,8 +89,15 @@ public class GraphBuilder2 {
 				StackPane gnode = makeSomeGUI(chTreeNode.node, stepX * i, y, chTreeNode.depth);
 				gnode.setOnMouseClicked(event -> fillTree(g, chTreeNode, width, height, b, d));
 				
-				gnode.setOnMouseEntered(event -> System.out.println("entered"));
-				gnode.setOnMouseExited(event -> System.out.println("leaved"));
+				gnode.setOnMouseEntered(mouseEvent -> {
+					System.out.println("entered");
+					int[] state = null;
+//					gameGUI.DrawState(state);
+				});
+				gnode.setOnMouseExited(event -> {
+					System.out.println("leaved");
+//					gameGUI.DrawState();
+				});
 
 				g.getChildren().addAll(l, gnode);
 				i++;

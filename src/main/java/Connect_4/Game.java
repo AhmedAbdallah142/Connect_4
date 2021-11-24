@@ -1,6 +1,7 @@
 package Connect_4;
 
 import algorithms.MinMax;
+import app.connect_4.GUIGameController;
 import app.connect_4.GraphBuilder;
 import app.connect_4.GraphBuilder2;
 import javafx.scene.control.ScrollPane;
@@ -29,22 +30,27 @@ public class Game {
             instance = new Game();
         return instance;
     }
+    public int[] getGUIState(){
+        return state.get1dState();
+    }
 
     public void insertBall(int colIndex,int playerNum){
         state.Play(colIndex, playerNum);
         changeTurn();
     }
+    int lastState[][];
     public int ComputerTurn(int depth,boolean fastMode){
+        lastState = state.getState();
         Graph = new Node(null);
         int p = AI.minMax(state.getState(), 1, depth, fastMode, Graph);
         insertBall(p,1);
         return p;
     }
 
-    public ScrollPane Graph(){
+    public ScrollPane Graph(GUIGameController gameGUI){
         //// write your code here yousef
         GraphBuilder2 gb2 = new GraphBuilder2();
-        return gb2.draw_graph(Graph);
+        return gb2.draw_graph(Graph,gameGUI,lastState);
     }
 
     public int[] getScore (){

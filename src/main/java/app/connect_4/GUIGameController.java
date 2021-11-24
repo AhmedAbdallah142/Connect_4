@@ -14,7 +14,7 @@ public class GUIGameController {
     private final Accordion graphLayout;
     private final Game game;
     private int count;
-    private CheckBox fastMode;
+    private final CheckBox fastMode;
 
     public GUIGameController(Label P1Score, Label P2Score,Accordion graphLayout,CheckBox fastMode) {
         userWait = false;
@@ -46,7 +46,7 @@ public class GUIGameController {
         new Thread(() -> {
             try {
                 int col = game.ComputerTurn(10,fastMode.isSelected());
-                addGraphLevel(game.Graph());
+                addGraphLevel(game.Graph(this));
                 Thread.sleep(500);
                 insertBallAction(col, Color.YELLOW);
                 userWait = false;
@@ -56,6 +56,28 @@ public class GUIGameController {
         }).start();
     }
 
+    int[] oldState;
+    public void DrawState(int [] state){
+        oldState = game.getGUIState();
+        for (int i = 0 ; i < state.length ; i++ ){
+            layout.getBoardCircles()[i].setFill(nodeColor(state[i]));
+        }
+    }
+
+    public void DrawState(){
+        for (int i = 0 ; i < oldState.length ; i++ ){
+            layout.getBoardCircles()[i].setFill(nodeColor(oldState[i]));
+        }
+    }
+
+    private Color nodeColor(int player){
+        return switch (player) {
+            case 1 -> Color.YELLOW;
+            case 2 -> Color.RED;
+            default -> Color.valueOf("#b8b8b8");
+        };
+    }
+
     private void addGraphLevel(ScrollPane panel){
         Platform.runLater(() -> {
             TitledPane pane = new TitledPane("LEVEL " + count++, panel);
@@ -63,6 +85,7 @@ public class GUIGameController {
             graphLayout.getPanes().add(pane);
         });
     }
+
 
     private void setScore() {
         int[] temp = game.getScore();
