@@ -61,9 +61,8 @@ public class GraphBuilder2 {
 			fillTree(g, new TreeNode(curr, 1, root.depth - i), width, height, b, d);
 		});
 
-		// add root node
 		g.getChildren().addAll(rect, backBtn, 
-										makeSomeGUI(root.node, root.orderX * stepX, stepY, root.depth));
+			makeSomeGUI(root.node, root.orderX * stepX, stepY, root.depth));
 
 		LinkedList<TreeNode> que = new LinkedList<>();
 		que.addLast(new TreeNode(root.node, 1, root.depth));
@@ -92,14 +91,6 @@ public class GraphBuilder2 {
 				Line l = new Line(pStep * tNode.orderX, y - stepY, stepX * i, y);
 				StackPane gnode = makeSomeGUI(chTreeNode.node, stepX * i, y, chTreeNode.depth);
 				gnode.setOnMouseClicked(event -> fillTree(g, chTreeNode, width, height, b, d));
-				
-				gnode.setOnMouseEntered(mouseEvent -> {
-					int[] oneD = gameAtNode(child, clone2D(state)).get1dState();
-					gameGUI.DrawState(oneD);
-				});
-				gnode.setOnMouseExited(event -> {
-					gameGUI.DrawState();
-				});
 
 				g.getChildren().addAll(l, gnode);
 				i++;
@@ -127,6 +118,15 @@ public class GraphBuilder2 {
 		text.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 15));
 
 		stackp.getChildren().addAll(rect, text);
+
+		stackp.setOnMouseEntered(mouseEvent -> {
+			int[] oneD = gameAtNode(root, clone2D(state)).get1dState();
+			gameGUI.DrawState(oneD);
+		});
+		stackp.setOnMouseExited(event -> {
+			gameGUI.DrawState();
+		});
+
 		return stackp;
 	}
 
@@ -140,18 +140,18 @@ public class GraphBuilder2 {
 	}
 
 	private State gameAtNode(Node node, int[][] gameStart) {
-		int player = 2;
+		int player = 1;
 		LinkedList<Node> nodeList = new LinkedList<>();
 		
 		Node curr = node;
     while(curr.parent != null) {
-      nodeList.addLast(curr);
+      nodeList.addFirst(curr);
       curr = curr.parent;
     }
 
 		State game = new State(gameStart);
     for (Node n: nodeList) {
-      game.Play(n.col - 1, 3 - player);
+      game.Play(n.col - 1, player);
       player = 3 - player;
     }
 
