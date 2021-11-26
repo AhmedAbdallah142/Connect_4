@@ -12,7 +12,7 @@ public class MiniMax {
   protected int[] conqureTheMid;
   protected Map<String, Character> visited;
   protected Heuristic heurestic;
-  protected long hTime;
+  protected long hTime, nodesCount;
 
   protected MiniMax () {
     this.visited = new HashMap<>();

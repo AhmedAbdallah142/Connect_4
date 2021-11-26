@@ -17,6 +17,7 @@ public class MiniMax_pruning extends MiniMax{
     conqureTheMid = zigzag(state[0].length);
     visited.clear();
     hTime = 0l;
+    nodesCount = 0l;
 
     long tik = System.nanoTime();
     int bestCol = max(state, player, k, alpha, beta, root)[1]; // best column to play in
@@ -24,6 +25,7 @@ public class MiniMax_pruning extends MiniMax{
 
     System.out.println("Total Minimax Time: " + (tok - tik) / 1000000 + " ms");
     System.out.println("Heuristic Uses: " + (hTime * 100) / (tok - tik) + " % of the time");
+    System.out.println("Expanded Nodes: " + nodesCount);
     System.out.println("--------------------------------------");
 
     root.col = bestCol + 1;
@@ -31,6 +33,7 @@ public class MiniMax_pruning extends MiniMax{
   }
 
   private int[] max(int[][] state, int player, int k, int alpha, int beta, Node node) {
+    nodesCount++; // increase number of expanded nodes
     if (k <= 0 || isTerminalState(state)) // maximum depth reached or game over
       return terminalCase(state, alpha, beta, node);
     
@@ -72,6 +75,7 @@ public class MiniMax_pruning extends MiniMax{
   }
 
   private int[] mini(int[][] state, int player, int k, int alpha, int beta, Node node) {
+    nodesCount++; // increase number of expanded nodes
     if (k <= 0 || isTerminalState(state)) // maximum depth reached or game over
       return terminalCase(state, alpha, beta, node);
 
