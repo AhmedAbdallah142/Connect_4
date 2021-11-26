@@ -5,7 +5,6 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class LayoutController {
@@ -45,7 +44,7 @@ public class LayoutController {
     }
 
 
-    public void changeSpeed(MouseEvent mouseEvent) {
+    public void changeSpeed() {
         int temp = 2;
         if (Revisit.isSelected()) {
             temp = 1;
@@ -57,7 +56,6 @@ public class LayoutController {
     }
 
     public void changeDepth(int depth) {
-        System.out.println();
         game.setDepth(depth);
     }
 }
