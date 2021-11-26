@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -22,7 +23,7 @@
     </ScrollPane>
     <VBox prefHeight="900" prefWidth="510.0">
         <Pane minWidth="200" prefHeight="337.0" prefWidth="600.0">
-            <Label layoutX="36.0" layoutY="151.0" text="Player 1">
+            <Label layoutX="80.0" layoutY="151.0" text="Player 1">
                 <textFill>
                     <LinearGradient>
                         <stops>
@@ -43,7 +44,7 @@
                     <Font size="35.0" />
                 </font>
             </Label>
-            <Label layoutX="315.0" layoutY="151.0" text="Player 2">
+            <Label layoutX="296.0" layoutY="151.0" text="Player 2">
                 <textFill>
                     <LinearGradient endX="0.5285714285714286" endY="0.7857142857142857">
                         <stops>
@@ -64,7 +65,7 @@
                     <Font size="35.0" />
                 </font>
             </Label>
-            <Label fx:id="P1Score" layoutX="87.0" layoutY="100.0" text="0">
+            <Label fx:id="P1Score" layoutX="132.0" layoutY="100.0" text="0">
                 <textFill>
                     <LinearGradient>
                         <stops>
@@ -85,7 +86,7 @@
                     <Font size="35.0" />
                 </font>
             </Label>
-            <Label fx:id="P2Score" layoutX="366.0" layoutY="100.0" text="0">
+            <Label fx:id="P2Score" layoutX="338.0" layoutY="100.0" text="0">
                 <textFill>
                     <LinearGradient endX="0.5285714285714286" endY="0.7857142857142857">
                         <stops>
@@ -106,7 +107,28 @@
                     <Font size="35.0" />
                 </font>
             </Label>
-            <Label layoutX="158.0" layoutY="34.0" text="Connect 4">
+            <CheckBox fx:id="Revisit" layoutX="14.0" layoutY="43.0" mnemonicParsing="false" onMouseClicked="#changeSpeed" text="Revisit">
+                <textFill>
+                    <LinearGradient endX="0.5666666666666667" endY="0.6666666666666667" startX="0.16190476190476188" startY="0.16666666666666666">
+                        <stops>
+                            <Stop>
+                                <color>
+                                    <Color red="0.04899999871850014" green="0.9800000190734863" blue="0.6121373772621155" />
+                                </color>
+                            </Stop>
+                            <Stop offset="1.0">
+                                <color>
+                                    <Color red="0.29629629850387573" green="0.7067901492118835" blue="1.0" />
+                                </color>
+                            </Stop>
+                        </stops>
+                    </LinearGradient>
+                </textFill>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </CheckBox>
+            <Label layoutX="177.0" layoutY="43.0" text="Connect 4">
                 <textFill>
                     <LinearGradient endX="0.561904761904762" endY="0.8">
                         <stops>
@@ -127,27 +149,50 @@
                     <Font size="35.0" />
                 </font>
             </Label>
-         <CheckBox fx:id="fastMode" selected="true" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Fast Mode">
-            <textFill>
-               <LinearGradient endX="0.5666666666666667" endY="0.6666666666666667" startX="0.16190476190476188" startY="0.16666666666666666">
-                  <stops>
-                     <Stop>
-                        <color>
-                           <Color red="0.04899999871850014" green="0.9800000190734863" blue="0.6121373772621155" />
-                        </color>
-                     </Stop>
-                     <Stop offset="1.0">
-                        <color>
-                           <Color red="0.29629629850387573" green="0.7067901492118835" blue="1.0" />
-                        </color>
-                     </Stop>
-                  </stops>
-               </LinearGradient>
-            </textFill>
-            <font>
-               <Font size="14.0" />
-            </font>
-         </CheckBox>
+            <CheckBox fx:id="Pruning" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#changeSpeed" selected="true" text="Pruning">
+                <textFill>
+                    <LinearGradient endX="0.5666666666666667" endY="0.6666666666666667" startX="0.16190476190476188" startY="0.16666666666666666">
+                        <stops>
+                            <Stop>
+                                <color>
+                                    <Color red="0.04899999871850014" green="0.9800000190734863" blue="0.6121373772621155" />
+                                </color>
+                            </Stop>
+                            <Stop offset="1.0">
+                                <color>
+                                    <Color red="0.29629629850387573" green="0.7067901492118835" blue="1.0" />
+                                </color>
+                            </Stop>
+                        </stops>
+                    </LinearGradient>
+                </textFill>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </CheckBox>
+            <Label layoutX="14.0" layoutY="74.0" text="Depth">
+                <font>
+                    <Font name="System Bold Italic" size="15.0" />
+                </font>
+                <textFill>
+                    <LinearGradient endX="0.5666666666666667" endY="0.6666666666666667" startX="0.16190476190476188" startY="0.16666666666666666">
+                        <stops>
+                            <Stop>
+                                <color>
+                                    <Color red="0.04899999871850014" green="0.9800000190734863" blue="0.6121373772621155" />
+                                </color>
+                            </Stop>
+                            <Stop offset="1.0">
+                                <color>
+                                    <Color red="0.29629629850387573" green="0.7067901492118835" blue="1.0" />
+                                </color>
+                            </Stop>
+                        </stops>
+                    </LinearGradient>
+                </textFill>
+            </Label>
+            <Spinner fx:id="Depth" amountToStepBy="1" editable="true" initialValue="5" layoutX="59.0" layoutY="72.0" max="100" min="1" prefHeight="25.0" prefWidth="65.0">
+            </Spinner>
         </Pane>
         <HBox fx:id="Bar_Container" prefHeight="100.0" prefWidth="200.0" styleClass="game-container">
         </HBox>

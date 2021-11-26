@@ -14,15 +14,17 @@ public class GUIGameController {
     private final Accordion graphLayout;
     private final Game game;
     private int count;
-    private final CheckBox fastMode;
+    private int Speed;
+    private int Depth;
 
-    public GUIGameController(Label P1Score, Label P2Score,Accordion graphLayout,CheckBox fastMode) {
+    public GUIGameController(Label P1Score, Label P2Score,Accordion graphLayout) {
         userWait = false;
         count = 0;
         this.P1Score = P1Score;
         this.P2Score = P2Score;
         this.graphLayout = graphLayout;
-        this.fastMode = fastMode;
+        this.Speed = 4;
+        this.Depth = 5;
         layout = LayoutBuilder.getInstance();
         game = Game.getInstance();
     }
@@ -45,7 +47,7 @@ public class GUIGameController {
     private void ComputerTurn() {
         new Thread(() -> {
             try {
-                int col = game.ComputerTurn(10,fastMode.isSelected());
+                int col = game.ComputerTurn(Depth,Speed);
                 addGraphLevel(game.Graph(this));
                 Thread.sleep(500);
                 insertBallAction(col, Color.YELLOW);
@@ -130,4 +132,11 @@ public class GUIGameController {
     }
 
 
+    public void setSpeed(int speed) {
+        this.Speed = speed;
+    }
+
+    public void setDepth(int depth) {
+        this.Depth = depth;
+    }
 }
