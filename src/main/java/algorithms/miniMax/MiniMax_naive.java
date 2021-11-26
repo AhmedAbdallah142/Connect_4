@@ -12,7 +12,7 @@ public class MiniMax_naive extends MiniMax{
   public int get_bestPlay(int[][] state, int player, int k, boolean memoization, Node root) {
     // initialize variables
     this.memo = memoization;
-    conqureTheMid = zigzag(state[0].length);
+    conquerTheMid = zigzag(state[0].length);
     visited.clear();
     hTime = 0l;
     nodesCount = 0l;
@@ -38,7 +38,7 @@ public class MiniMax_naive extends MiniMax{
     int best = Integer.MIN_VALUE;
     int bestCol = 0; 
 
-    for (int i : conqureTheMid) {
+    for (int i : conquerTheMid) {
       if(state[0][i] == empty) {
         int empRow = emptyRow(state, i); // find empty row
         state[empRow][i] = player; // play in an avaliable place
@@ -78,7 +78,7 @@ public class MiniMax_naive extends MiniMax{
     int best = Integer.MAX_VALUE;
     int bestCol = 0;
 
-    for (int i : conqureTheMid) {
+    for (int i : conquerTheMid) {
       if(state[0][i] == empty) {
         int empRow = emptyRow(state, i); // find empty row
         state[empRow][i] = player; // play in an avaliable place

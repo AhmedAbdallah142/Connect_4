@@ -9,7 +9,7 @@ import algorithms.Heuristic;
 public class MiniMax {
   protected int empty = 0, plySum = 3;
   protected boolean memo = true;
-  protected int[] conqureTheMid;
+  protected int[] conquerTheMid;
   protected Map<String, Character> visited;
   protected Heuristic heurestic;
   protected long hTime, nodesCount;

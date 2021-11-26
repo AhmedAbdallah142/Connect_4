@@ -40,6 +40,7 @@ public class GraphBuilder2 {
 		if (d < 0)
 			return;
 
+		// initialize variables
 		int depth = 0;
 		double stepX = width / 2, stepY = height / (d + 2);
 		double y = stepY;
@@ -60,10 +61,12 @@ public class GraphBuilder2 {
 
 			fillTree(g, new TreeNode(curr, 1, root.depth - i), width, height, b, d);
 		});
-
+		// Add to group
 		g.getChildren().addAll(rect, backBtn, 
 			makeSomeGUI(root.node, root.orderX * stepX, stepY, root.depth));
 
+		// BFS
+		// Add root as first element in the BFS que
 		LinkedList<TreeNode> que = new LinkedList<>();
 		que.addLast(new TreeNode(root.node, 1, root.depth));
 

@@ -14,7 +14,7 @@ public class MiniMax_pruning extends MiniMax{
     this.memo = memoization;
     int alpha = Integer.MIN_VALUE;
     int beta = Integer.MAX_VALUE;
-    conqureTheMid = zigzag(state[0].length);
+    conquerTheMid = zigzag(state[0].length);
     visited.clear();
     hTime = 0l;
     nodesCount = 0l;
@@ -40,10 +40,10 @@ public class MiniMax_pruning extends MiniMax{
     int best = Integer.MIN_VALUE;
     int bestCol = 0; 
 
-    for (int i : conqureTheMid) {
+    for (int i : conquerTheMid) {
       if(state[0][i] == empty) {
         int empRow = emptyRow(state, i); // find empty row
-        state[empRow][i] = player; // play in an avaliable place
+        state[empRow][i] = player; // play in an available place
         
         if (memo) { // if using memoization check if the state is already visited
           String stateStr = stateToString(state, player);
@@ -82,10 +82,10 @@ public class MiniMax_pruning extends MiniMax{
     int best = Integer.MAX_VALUE;
     int bestCol = 0;
 
-    for (int i : conqureTheMid) {
+    for (int i : conquerTheMid) {
       if(state[0][i] == empty) {
         int empRow = emptyRow(state, i); // find empty row
-        state[empRow][i] = player; // play in an avaliable place
+        state[empRow][i] = player; // play in an available place
         
         if (memo) { // if using memoization check if the state is already visited
           String stateStr = stateToString(state, player);
