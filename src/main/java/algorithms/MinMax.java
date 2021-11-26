@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MinMax {
-  public static void main (String[] args) {
-    // MinMax m = new MinMax()
-  }
 
   private int empty = 0, plySum = 3;
   private boolean pruning = true;
@@ -47,17 +44,20 @@ public class MinMax {
 
     for (int i : conqureTheMid) {
       if(state[0][i] == empty) {
-        int[][] newState = clone2D(state);
-        newState[emptyRow(state, i)][i] = player; // play in an avaliable place
+        int empRow = emptyRow(state, i);
+        state[empRow][i] = player; // play in an avaliable place
         
-        String stateStr = stateToString(newState);
-        if (visited.containsKey(stateStr))
+        String stateStr = stateToString(state, player);
+        
+        if (visited.containsKey(stateStr)) {
+          state[empRow][i] = empty; // undo
           continue;
+        }
         
         visited.put(stateStr, '0');
         Node child = new Node(node, i + 1);
         node.childs.add(child);
-        int minVal = mini(newState, plySum - player, k-1, alpha, beta, child)[0];
+        int minVal = mini(state, plySum - player, k-1, alpha, beta, child)[0];
         
         if (minVal > best) {
           best = minVal;
@@ -65,6 +65,7 @@ public class MinMax {
         }
         alpha = Math.max(alpha, minVal);
 
+        state[empRow][i] = empty; // undo
         if (pruning && alpha >= beta) break;
       }
     }
@@ -77,21 +78,24 @@ public class MinMax {
       return terminalCase(state, alpha, beta, node);
 
     int best = Integer.MAX_VALUE;
-    int bestCol = 0; 
+    int bestCol = 0;
 
     for (int i : conqureTheMid) {
       if(state[0][i] == empty) {
-        int[][] newState = clone2D(state);
-        newState[emptyRow(state, i)][i] = player; // play in an avaliable place
+        int empRow = emptyRow(state, i);
+        state[empRow][i] = player; // play in an avaliable place
         
-        String stateStr = stateToString(newState);
-        if (visited.containsKey(stateStr))
+        String stateStr = stateToString(state, player);
+
+        if (visited.containsKey(stateStr)) {
+          state[empRow][i] = empty; // undo
           continue;
+        }
         
         visited.put(stateStr, '0');
         Node child = new Node(node, i + 1);
         node.childs.add(child);
-        int maxVal = max(newState, plySum - player, k-1, alpha, beta, child)[0];
+        int maxVal = max(state, plySum - player, k-1, alpha, beta, child)[0];
         
         if (maxVal < best) {
           best = maxVal;
@@ -99,6 +103,7 @@ public class MinMax {
         }
         beta = Math.min(beta, maxVal);
         
+        state[empRow][i] = empty; // undo
         if (pruning && alpha >= beta) break;
       }
     }
@@ -130,11 +135,12 @@ public class MinMax {
     return -1;
   }
 
-  private String stateToString(int[][] state) {
+  private String stateToString(int[][] state, int player) {
     StringBuilder str = new StringBuilder();
     for (int[] row : state)
       for (int col : row)
         str.append(col);
+    str.append(player);
     return str.toString();
   }
 
@@ -160,4 +166,19 @@ public class MinMax {
       copy[i] = arr[i].clone();
     return copy;
   }
+
+  // private boolean deb(int[][] state) {
+  //   boolean check = state[5][3] == 2 && state[4][3] == 1 && state[5][6] == 1 && state[4][6] == 2;
+  //   if (!check)
+  //     return check;
+    
+  //     for (int i=0; i < state.length; i++) {
+  //       for(int j=0; j < state[0].length; j++) {
+  //         if((i == 5 && j==3) || (i == 4 && j == 3) || (i == 5 && j == 6) || (i == 4 && j == 6))
+  //           continue;
+  //         if(state[i][j] != 0) return false;
+  //       }
+  //   }
+  //   return true;
+  // }
 }
