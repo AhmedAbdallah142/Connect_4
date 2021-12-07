@@ -48,7 +48,7 @@ public class GUIGameController {
         new Thread(() -> {
             try {
                 int col = game.ComputerTurn(Depth,Speed);
-                addGraphLevel(game.Graph(this));
+                // addGraphLevel(game.Graph(this));
                 Thread.sleep(500);
                 insertBallAction(col, Color.YELLOW);
                 userWait = false;

@@ -28,7 +28,7 @@ public class MiniMax_pruning extends MiniMax{
     System.out.println("Expanded Nodes: " + nodesCount);
     System.out.println("--------------------------------------");
 
-    root.col = bestCol + 1;
+    if(root != null) root.col = bestCol + 1;
     return bestCol;
   }
 
@@ -55,11 +55,16 @@ public class MiniMax_pruning extends MiniMax{
           visited.put(stateStr, '0');
         }
         
-        // i + 1 -> to make columns start from 1 (this number will be displayed in the graph)
-        Node child = new Node(node, i + 1);
-        node.childs.add(child);
-        int minVal = mini(state, plySum - player, k-1, alpha, beta, child)[0];
-        
+        int minVal;
+        if(node != null) {
+          // i + 1 -> to make columns start from 1 (this number will be displayed in the graph)
+          Node child = new Node(node, i + 1);
+          node.childs.add(child);
+          minVal = mini(state, plySum - player, k-1, alpha, beta, child)[0];
+        }
+        else
+          minVal = mini(state, plySum - player, k-1, alpha, beta, null)[0];
+
         if (minVal > best) { // if better value found: update
           best = minVal;
           bestCol = i;
@@ -70,7 +75,7 @@ public class MiniMax_pruning extends MiniMax{
         if (alpha >= beta) break; // alpha beta check
       }
     }
-    node.setValues(best, alpha, beta);
+    if(node != null) node.setValues(best, alpha, beta);
     return new int[] {best, bestCol};
   }
 
@@ -97,10 +102,15 @@ public class MiniMax_pruning extends MiniMax{
           visited.put(stateStr, '0');
         }
         
-        // i + 1 -> to make columns start from 1 (this number will be displayed in the graph)
-        Node child = new Node(node, i + 1);
-        node.childs.add(child);
-        int maxVal = max(state, plySum - player, k-1, alpha, beta, child)[0];
+        int maxVal;
+        if(node != null) {
+          // i + 1 -> to make columns start from 1 (this number will be displayed in the graph)
+          Node child = new Node(node, i + 1);
+          node.childs.add(child);
+          maxVal = max(state, plySum - player, k-1, alpha, beta, child)[0];
+        }
+        else
+          maxVal = max(state, plySum - player, k-1, alpha, beta, null)[0];
         
         if (maxVal < best) {
           best = maxVal;
@@ -112,7 +122,7 @@ public class MiniMax_pruning extends MiniMax{
         if (alpha >= beta) break; // alpha beta check
       }
     }
-    node.setValues(best, alpha, beta);
+    if(node != null) node.setValues(best, alpha, beta);
     return new int[] {best, bestCol};
   }
 }

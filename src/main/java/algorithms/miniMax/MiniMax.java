@@ -35,7 +35,7 @@ public class MiniMax {
     int[] h = new int[] {heurestic.heuristic_function(state), -1};
     long tok = System.nanoTime();
     hTime += (tok-tik);
-    node.setValues(h[0], alpha, beta);
+    if(node != null) node.setValues(h[0], alpha, beta);
     return h;
   }
 

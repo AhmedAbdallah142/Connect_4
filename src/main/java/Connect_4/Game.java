@@ -51,7 +51,8 @@ public class Game {
 
     public int ComputerTurn(int depth, int Speed) {
         lastState = AI.clone2D(state.getState());
-        Graph = new Node(null);
+        // Graph = new Node(null);
+        Graph = null;
         int p = bestPlay(Speed, depth);
         insertBall(p, 1);
         return p;
