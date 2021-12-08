@@ -23,7 +23,10 @@ public class LayoutController {
     @FXML
     private CheckBox Pruning;
     @FXML
+    private CheckBox drawGraph;
+    @FXML
     private Spinner<Integer> Depth;
+
 
     public static GUIGameController game;
 
@@ -57,5 +60,9 @@ public class LayoutController {
 
     public void changeDepth(int depth) {
         game.setDepth(depth);
+    }
+
+    public void setDrawGraph() {
+        game.setDrawGraph(drawGraph.isSelected());
     }
 }

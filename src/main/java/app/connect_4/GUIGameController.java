@@ -13,18 +13,20 @@ public class GUIGameController {
     private final Label P2Score;
     private final Accordion graphLayout;
     private final Game game;
-    private int count;
+    private int levelCount;
     private int Speed;
     private int Depth;
+    private boolean drawGraph;
 
-    public GUIGameController(Label P1Score, Label P2Score,Accordion graphLayout) {
+    public GUIGameController(Label P1Score, Label P2Score, Accordion graphLayout) {
         userWait = false;
-        count = 0;
+        levelCount = 0;
         this.P1Score = P1Score;
         this.P2Score = P2Score;
         this.graphLayout = graphLayout;
         this.Speed = 4;
-        this.Depth = 5;
+        this.Depth = 10;
+        this.drawGraph = true;
         layout = LayoutBuilder.getInstance();
         game = Game.getInstance();
     }
@@ -36,8 +38,8 @@ public class GUIGameController {
             return;
         }
         userWait = true;
-        game.insertBall(colIndex,2);
-        insertBallAction(colIndex,Color.RED);
+        game.insertBall(colIndex, 2);
+        insertBallAction(colIndex, Color.RED);
         // Call Computer Solver Algorithm here // the algorithm will run beside the ball motion
         // Call insertBallAction()
         // this method verify very fast Gui Motion (User Wait Less)
@@ -47,8 +49,10 @@ public class GUIGameController {
     private void ComputerTurn() {
         new Thread(() -> {
             try {
-                int col = game.ComputerTurn(Depth,Speed);
-                // addGraphLevel(game.Graph(this));
+                int col = game.ComputerTurn(Depth, Speed);
+                levelCount++;
+                if (drawGraph)
+                    addGraphLevel(game.Graph(this));
                 Thread.sleep(500);
                 insertBallAction(col, Color.YELLOW);
                 userWait = false;
@@ -59,20 +63,21 @@ public class GUIGameController {
     }
 
     int[] oldState;
-    public void DrawState(int [] state){
+
+    public void DrawState(int[] state) {
         oldState = game.getGUIState();
-        for (int i = 0 ; i < state.length ; i++ ){
+        for (int i = 0; i < state.length; i++) {
             layout.getBoardCircles()[i].setFill(nodeColor(state[i]));
         }
     }
 
-    public void DrawState(){
-        for (int i = 0 ; i < oldState.length ; i++ ){
+    public void DrawState() {
+        for (int i = 0; i < oldState.length; i++) {
             layout.getBoardCircles()[i].setFill(nodeColor(oldState[i]));
         }
     }
 
-    private Color nodeColor(int player){
+    private Color nodeColor(int player) {
         return switch (player) {
             case 1 -> Color.YELLOW;
             case 2 -> Color.RED;
@@ -80,9 +85,9 @@ public class GUIGameController {
         };
     }
 
-    private void addGraphLevel(ScrollPane panel){
+    private void addGraphLevel(ScrollPane panel) {
         Platform.runLater(() -> {
-            TitledPane pane = new TitledPane("LEVEL " + count++, panel);
+            TitledPane pane = new TitledPane("LEVEL " + levelCount, panel);
             pane.setMinHeight(500);
             graphLayout.getPanes().add(pane);
         });
@@ -138,5 +143,9 @@ public class GUIGameController {
 
     public void setDepth(int depth) {
         this.Depth = depth;
+    }
+
+    public void setDrawGraph(boolean drawGraph) {
+        this.drawGraph = drawGraph;
     }
 }

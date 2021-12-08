@@ -1,6 +1,5 @@
 package Connect_4;
 
-import algorithms.MinMax;
 import algorithms.miniMax.MiniMax;
 import algorithms.miniMax.MiniMax_naive;
 import algorithms.miniMax.MiniMax_pruning;
@@ -13,7 +12,6 @@ import javafx.scene.paint.Color;
 public class Game {
     private Color turn;
     private final State state;
-    private final MinMax AI;
     private final Score score;
     MiniMax pruningInstance;
     MiniMax naiveInstance;
@@ -23,7 +21,6 @@ public class Game {
 
     private Game() {
         turn = Color.RED;
-        AI = new MinMax();
         score = new Score();
         state = State.getInstance();
         pruningInstance = new MiniMax_pruning();
@@ -50,12 +47,19 @@ public class Game {
     int[][] lastState;
 
     public int ComputerTurn(int depth, int Speed) {
-        lastState = AI.clone2D(state.getState());
-        // Graph = new Node(null);
-        Graph = null;
+        lastState = clone2D(state.getState());
+        Graph = new Node(null);
+        //Graph = null;
         int p = bestPlay(Speed, depth);
         insertBall(p, 1);
         return p;
+    }
+
+    private int[][] clone2D(int[][] arr) {
+        int[][] copy = new int[arr.length][];
+        for(int i = 0; i < arr.length; i++)
+            copy[i] = arr[i].clone();
+        return copy;
     }
 
     private int bestPlay(int speed, int depth) {

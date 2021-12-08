@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Connect_4.Node;
+import algorithms.Heurestic2;
 import algorithms.Heuristic;
 
 public class MiniMax {
@@ -11,12 +12,12 @@ public class MiniMax {
   protected boolean memo = true;
   protected int[] conquerTheMid;
   protected Map<String, Character> visited;
-  protected Heuristic heurestic;
+  protected Heurestic2 heurestic;
   protected long hTime, nodesCount;
 
   protected MiniMax () {
     this.visited = new HashMap<>();
-    this.heurestic = new Heuristic();
+    this.heurestic = new Heurestic2();
   }
 
   public int get_bestPlay(int[][] state, int player, int k, boolean memoization, Node root) {
