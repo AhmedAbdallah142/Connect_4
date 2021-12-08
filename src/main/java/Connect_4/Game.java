@@ -25,8 +25,6 @@ public class Game {
         state = State.getInstance();
         pruningInstance = new MiniMax_pruning();
         naiveInstance = new MiniMax_naive();
-        // graphClass = new GraphBuilder();
-        Graph = new Node(null);
     }
 
     public static Game getInstance() {
@@ -46,10 +44,12 @@ public class Game {
 
     int[][] lastState;
 
-    public int ComputerTurn(int depth, int Speed) {
+    public int ComputerTurn(int depth, int Speed,boolean drawGraph) {
         lastState = clone2D(state.getState());
-        Graph = new Node(null);
-        //Graph = null;
+        if (drawGraph)
+            Graph = new Node(null);
+        else
+            Graph = null;
         int p = bestPlay(Speed, depth);
         insertBall(p, 1);
         return p;

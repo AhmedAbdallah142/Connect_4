@@ -49,7 +49,7 @@ public class GUIGameController {
     private void ComputerTurn() {
         new Thread(() -> {
             try {
-                int col = game.ComputerTurn(Depth, Speed);
+                int col = game.ComputerTurn(Depth, Speed,drawGraph);
                 levelCount++;
                 if (drawGraph)
                     addGraphLevel(game.Graph(this));
