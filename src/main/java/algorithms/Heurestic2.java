@@ -22,7 +22,7 @@ public class Heurestic2 {
 				two = isTwo(state, i, j)+isTwo(state, i, j+1)+isTwo(state, i, j+2)+isTwo(state, i, j+3);
 				if(one == 0) {
 					if(two == 4) {
-						back-=100;
+						back-=50;
 					}else if(two == 3) {
 						back-=10;
 					}else if(two == 2) {
@@ -32,7 +32,7 @@ public class Heurestic2 {
 					}
 				}else if (two == 0) {
 					if(one == 4) {
-						back+=100;
+						back+=50;
 					}else if(one == 3) {
 						back+=10;
 					}else if(one == 2) {
@@ -56,7 +56,7 @@ public class Heurestic2 {
 				two = isTwo(state, i, j)+isTwo(state, i+1, j)+isTwo(state, i+2, j)+isTwo(state, i+3, j);
 				if(one == 0) {
 					if(two == 4) {
-						back-=100;
+						back-=50;
 					}else if(two == 3) {
 						back-=10;
 					}else if(two == 2) {
@@ -66,7 +66,7 @@ public class Heurestic2 {
 					}
 				}else if (two == 0) {
 					if(one == 4) {
-						back+=100;
+						back+=50;
 					}else if(one == 3) {
 						back+=10;
 					}else if(one == 2) {
@@ -91,7 +91,7 @@ public class Heurestic2 {
 				two = isTwo(state, i, j)+isTwo(state, i+1, j+1)+isTwo(state, i+2, j+2)+isTwo(state, i+3, j+3);
 				if(one == 0) {
 					if(two == 4) {
-						back-=100;
+						back-=50;
 					}else if(two == 3) {
 						back-=10;
 					}else if(two == 2) {
@@ -101,7 +101,7 @@ public class Heurestic2 {
 					}
 				}else if (two == 0) {
 					if(one == 4) {
-						back+=100;
+						back+=50;
 					}else if(one == 3) {
 						back+=10;
 					}else if(one == 2) {
@@ -125,7 +125,7 @@ public class Heurestic2 {
 				two = isTwo(state, i, j)+isTwo(state, i+1, j-1)+isTwo(state, i+2, j-2)+isTwo(state, i+3, j-3);
 				if(one == 0) {
 					if(two == 4) {
-						back-=100;
+						back-=50;
 					}else if(two == 3) {
 						back-=10;
 					}else if(two == 2) {
@@ -135,7 +135,7 @@ public class Heurestic2 {
 					}
 				}else if (two == 0) {
 					if(one == 4) {
-						back+=100;
+						back+=50;
 					}else if(one == 3) {
 						back+=10;
 					}else if(one == 2) {
