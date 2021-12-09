@@ -64,11 +64,11 @@ public class Game {
 
     private int bestPlay(int speed, int depth) {
         MiniMax m = ChooseAlg(speed);
-        return switch (speed % 2) {
-            case 0 -> m.get_bestPlay(state.getState(), 1, depth, true, Graph);
-            case 1 -> m.get_bestPlay(state.getState(), 1, depth, false, Graph);
-            default -> -1;
-        };
+        switch (speed % 2) {
+            case 0 : return m.get_bestPlay(state.getState(), 1, depth, true, Graph);
+            case 1 : return m.get_bestPlay(state.getState(), 1, depth, false, Graph);
+            default : return -1;
+        }
     }
 
     private MiniMax ChooseAlg(int speed) {

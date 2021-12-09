@@ -78,11 +78,11 @@ public class GUIGameController {
     }
 
     private Color nodeColor(int player) {
-        return switch (player) {
-            case 1 -> Color.YELLOW;
-            case 2 -> Color.RED;
-            default -> Color.valueOf("#b8b8b8");
-        };
+        switch (player) {
+            case 1 :return  Color.YELLOW;
+            case 2 :return Color.RED;
+            default :return Color.valueOf("#b8b8b8");
+        }
     }
 
     private void addGraphLevel(ScrollPane panel) {
