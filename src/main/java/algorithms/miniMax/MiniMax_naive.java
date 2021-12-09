@@ -35,6 +35,14 @@ public class MiniMax_naive extends MiniMax{
     if (k <= 0 || isTerminalState(state)) // maximum depth reached or game over
       return terminalCase(state, 0, 0, node);
     
+    String stateStr = "";
+    if (memo) { // if using memoization check if the state is already visited
+      stateStr = stateToString(state, player);
+      
+      Integer val = visited.get(stateStr);
+      if (val != null) return new int[] {val, -1};
+    }
+
     int best = Integer.MIN_VALUE;
     int bestCol = 0; 
 
@@ -42,16 +50,6 @@ public class MiniMax_naive extends MiniMax{
       if(state[0][i] == empty) {
         int empRow = emptyRow(state, i); // find empty row
         state[empRow][i] = player; // play in an avaliable place
-        
-        if (memo) { // if using memoization check if the state is already visited
-          String stateStr = stateToString(state, player);
-          
-          if (visited.containsKey(stateStr)) {
-            state[empRow][i] = empty; // undo
-            continue;
-          }
-          visited.put(stateStr, '0');
-        }
         
         int minVal;
         if(node != null) {
@@ -72,6 +70,7 @@ public class MiniMax_naive extends MiniMax{
       }
     }
     if(node != null) node.setValues(best, 0, 0);
+    if(memo) visited.put(stateStr, best);
     return new int[] {best, bestCol};
   }
 
@@ -80,6 +79,14 @@ public class MiniMax_naive extends MiniMax{
     if (k <= 0 || isTerminalState(state)) // maximum depth reached or game over
       return terminalCase(state, 0, 0, node);
 
+    String stateStr = "";
+    if (memo) { // if using memoization check if the state is already visited
+      stateStr = stateToString(state, player);
+      
+      Integer val = visited.get(stateStr);
+      if (val != null) return new int[] {val, -1};
+    }
+
     int best = Integer.MAX_VALUE;
     int bestCol = 0;
 
@@ -87,16 +94,6 @@ public class MiniMax_naive extends MiniMax{
       if(state[0][i] == empty) {
         int empRow = emptyRow(state, i); // find empty row
         state[empRow][i] = player; // play in an avaliable place
-        
-        if (memo) { // if using memoization check if the state is already visited
-          String stateStr = stateToString(state, player);
-          
-          if (visited.containsKey(stateStr)) {
-            state[empRow][i] = empty; // undo
-            continue;
-          }
-          visited.put(stateStr, '0');
-        }
         
         int maxVal;
         if(node != null) {
@@ -117,6 +114,7 @@ public class MiniMax_naive extends MiniMax{
       }
     }
     if(node != null) node.setValues(best, 0, 0);
+    if(memo) visited.put(stateStr, best);
     return new int[] {best, bestCol};
   }
 }
