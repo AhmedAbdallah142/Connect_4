@@ -4,12 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Node {
-	public int minmax;
+	public int minimax;
 	public int alpha;
 	public int beta;
   public int col;
 	public Node parent;
-	public List <Node> childs = new LinkedList<>();
+	public List <Node> children = new LinkedList<>();
 
 
 	public Node (Node parent) {
@@ -21,8 +21,8 @@ public class Node {
         this.col = col;
 	}
 
-	public void setValues (int minmax, int alpha, int beta) {
-		this.minmax = minmax;
+	public void setValues (int minimax, int alpha, int beta) {
+		this.minimax = minimax;
 		this.alpha = alpha;
 		this.beta = beta;
 	}

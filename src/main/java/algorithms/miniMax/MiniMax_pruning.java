@@ -16,8 +16,8 @@ public class MiniMax_pruning extends MiniMax{
     int beta = Integer.MAX_VALUE;
     conquerTheMid = zigzag(state[0].length);
     visited.clear();
-    hTime = 0l;
-    nodesCount = 0l;
+    hTime = 0L;
+    nodesCount = 0L;
 
     long tik = System.nanoTime();
     int bestCol = max(state, player, k, alpha, beta, root)[1]; // best column to play in
@@ -57,7 +57,7 @@ public class MiniMax_pruning extends MiniMax{
         if(node != null) {
           // i + 1 -> to make columns start from 1 (this number will be displayed in the graph)
           Node child = new Node(node, i + 1);
-          node.childs.add(child);
+          node.children.add(child);
           minVal = mini(state, plySum - player, k-1, alpha, beta, child)[0];
         }
         else
@@ -103,7 +103,7 @@ public class MiniMax_pruning extends MiniMax{
         if(node != null) {
           // i + 1 -> to make columns start from 1 (this number will be displayed in the graph)
           Node child = new Node(node, i + 1);
-          node.childs.add(child);
+          node.children.add(child);
           maxVal = max(state, plySum - player, k-1, alpha, beta, child)[0];
         }
         else
