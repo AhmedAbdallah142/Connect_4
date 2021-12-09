@@ -4,20 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Connect_4.Node;
-import algorithms.Heurestic2;
-import algorithms.Heuristic;
+import algorithms.Heuristic2;
 
 public class MiniMax {
   protected int empty = 0, plySum = 3;
   protected boolean memo = true;
   protected int[] conquerTheMid;
   protected Map<String, Integer> visited;
-  protected Heurestic2 heurestic;
+  protected Heuristic2 heuristic;
   protected long hTime, nodesCount;
 
   protected MiniMax () {
     this.visited = new HashMap<>();
-    this.heurestic = new Heurestic2();
+    this.heuristic = new Heuristic2();
   }
 
   public int get_bestPlay(int[][] state, int player, int k, boolean memoization, Node root) {
@@ -33,7 +32,7 @@ public class MiniMax {
 
   protected int[] terminalCase(int[][] state, int alpha, int beta, Node node) {
     long tik = System.nanoTime();
-    int[] h = new int[] {heurestic.heuristic_function(state), -1};
+    int[] h = new int[] {heuristic.heuristic_function(state), -1};
     long tok = System.nanoTime();
     hTime += (tok-tik);
     if(node != null) node.setValues(h[0], alpha, beta);

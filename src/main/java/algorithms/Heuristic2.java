@@ -1,7 +1,7 @@
 package algorithms;
 
 
-public class Heurestic2 {
+public class Heuristic2 {
 	
 	int isOne(int[][] state,int i,int j) {
 		if(state[i][j]==1) {return 1;}
@@ -13,12 +13,12 @@ public class Heurestic2 {
 		else return 0;
 	}
 	
-	int heurestic_horizontal(int[][] state) {
+	int heuristic_horizontal(int[][] state) {
 		int back = 0 ;
 		for(int i = 0 ; i < 6 ; i++ ) {
 			for(int j = 0 ; j < 4;j++) {
-				int one = 0,two = 0;
-				one = isOne(state, i, j)+isOne(state, i, j+1)+isOne(state, i, j+2)+isOne(state, i, j+3);
+				int two;
+				int one = isOne(state, i, j) + isOne(state, i, j + 1) + isOne(state, i, j + 2) + isOne(state, i, j + 3);
 				two = isTwo(state, i, j)+isTwo(state, i, j+1)+isTwo(state, i, j+2)+isTwo(state, i, j+3);
 				if(one == 0) {
 					if(two == 4) {
@@ -47,11 +47,11 @@ public class Heurestic2 {
 		return back;
 	}
 	
-	int heurestic_vertical(int[][] state) {
+	int heuristic_vertical(int[][] state) {
 		int back = 0 ;
 		for(int i = 0 ; i < 3 ; i++ ) {
 			for(int j = 0 ; j < 7;j++) {
-				int one = 0,two = 0;
+				int one,two;
 				one = isOne(state, i, j)+isOne(state, i+1, j)+isOne(state, i+2, j)+isOne(state, i+3, j);
 				two = isTwo(state, i, j)+isTwo(state, i+1, j)+isTwo(state, i+2, j)+isTwo(state, i+3, j);
 				if(one == 0) {
@@ -82,11 +82,11 @@ public class Heurestic2 {
 	}
 	
 	
-	int digonal_right(int[][] state) {
+	int diagonal_right(int[][] state) {
 		int back = 0;
 		for(int i = 0 ; i < 3 ; i++ ) {
 			for(int j = 0 ; j < 4;j++) {
-				int one = 0,two = 0;
+				int one,two;
 				one = isOne(state, i, j)+isOne(state, i+1, j+1)+isOne(state, i+2, j+2)+isOne(state, i+3, j+3);
 				two = isTwo(state, i, j)+isTwo(state, i+1, j+1)+isTwo(state, i+2, j+2)+isTwo(state, i+3, j+3);
 				if(one == 0) {
@@ -116,11 +116,11 @@ public class Heurestic2 {
 		return back;
 	}
 	
-	int digonal_left(int[][] state) {
+	int diagonal_left(int[][] state) {
 		int back = 0;
 		for(int i = 0 ; i < 3 ; i++ ) {
 			for(int j = 3 ; j < 7;j++) {
-				int one = 0,two = 0;
+				int one,two;
 				one = isOne(state, i, j)+isOne(state, i+1, j-1)+isOne(state, i+2, j-2)+isOne(state, i+3, j-3);
 				two = isTwo(state, i, j)+isTwo(state, i+1, j-1)+isTwo(state, i+2, j-2)+isTwo(state, i+3, j-3);
 				if(one == 0) {
@@ -151,12 +151,12 @@ public class Heurestic2 {
 	}
 
 	public int heuristic_function(int[][] state) {
-        int heurestic = 0;
-        heurestic+=heurestic_horizontal(state);
-        heurestic+=heurestic_vertical(state);
-        heurestic+=digonal_left(state);
-        heurestic+=digonal_right(state);
-        return heurestic;
+        int heuristic = 0;
+        heuristic+= heuristic_horizontal(state);
+        heuristic+= heuristic_vertical(state);
+        heuristic+= diagonal_left(state);
+        heuristic+= diagonal_right(state);
+        return heuristic;
     }
 	
 	public static void main(String[] args) {
@@ -176,7 +176,7 @@ public class Heurestic2 {
         state[3][4] = 2;
         state[2][1] = 2;
         state[2][3] = 1;
-        Heurestic2 h = new Heurestic2();
+        Heuristic2 h = new Heuristic2();
         int a = h.heuristic_function(state);
         System.out.println(a);
     }

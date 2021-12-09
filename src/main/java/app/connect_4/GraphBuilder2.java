@@ -17,8 +17,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class GraphBuilder2 {
-  private int treeWidth = 3500, treeHeight = 600;
-	private int nodeW = 60, nodeH = 80;
+  private final int treeWidth = 3500;
+	private final int treeHeight = 600;
 	private ScrollPane sp;
 	private GUIGameController gameGUI;
 	private int[][] state;
@@ -84,10 +84,10 @@ public class GraphBuilder2 {
 
 			int pdiv = (int)Math.pow(b, depth - 1.0);
 			double pStep = width / (pdiv + 1);
-			int skip = b - tNode.node.childs.size();
+			int skip = b - tNode.node.children.size();
 			int i = (skip / 2 + 1) + pdiv * (tNode.orderX - 1);
 
-			for (Node child : tNode.node.childs) {
+			for (Node child : tNode.node.children) {
 				TreeNode chTreeNode = new TreeNode(child, i, tNode.depth + 1);
 				que.addLast(chTreeNode);
 
@@ -104,7 +104,9 @@ public class GraphBuilder2 {
 
 	private StackPane makeSomeGUI(Node root, double x, double y, int depth) {
 		StackPane stackp = new StackPane();
+		int nodeW = 60;
 		stackp.setLayoutX(x - nodeW / 2.0);
+		int nodeH = 80;
 		stackp.setLayoutY(y - nodeH / 2.0);
 		stackp.setViewOrder(-1);
 
@@ -114,7 +116,7 @@ public class GraphBuilder2 {
 		else
 			rect.setFill(Color.INDIANRED);
 
-		String txt = numTostr(root.minmax) + ", " + root.col + "\n-------\n" + 
+		String txt = numTostr(root.minimax) + ", " + root.col + "\n-------\n" +
 									numTostr(root.alpha) + "\n" + numTostr(root.beta);
  
 		Text text = new Text(txt);
@@ -126,9 +128,7 @@ public class GraphBuilder2 {
 			int[] oneD = gameAtNode(root, clone2D(state)).get1dState();
 			gameGUI.DrawState(oneD);
 		});
-		stackp.setOnMouseExited(event -> {
-			gameGUI.DrawState();
-		});
+		stackp.setOnMouseExited(event -> gameGUI.DrawState());
 
 		return stackp;
 	}
